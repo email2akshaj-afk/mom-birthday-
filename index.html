@@ -16,8 +16,6 @@
 :root {
   --pink: #ff6b9d;
   --gold: #ffd166;
-  --dark: #160d24;
-  --glass: rgba(255,255,255,.09);
 }
 
 body {
@@ -45,9 +43,7 @@ body {
 }
 
 @keyframes fall {
-  to {
-    transform: translateY(110vh) rotate(720deg);
-  }
+  to { transform: translateY(110vh) rotate(720deg); }
 }
 
 main {
@@ -68,9 +64,7 @@ main {
   animation: appear .8s ease;
 }
 
-.screen.active {
-  display: flex;
-}
+.screen.active { display: flex; }
 
 @keyframes appear {
   from { opacity: 0; transform: translateY(18px); }
@@ -98,7 +92,7 @@ p {
   padding: 28px;
   border: 1px solid #ffffff25;
   border-radius: 24px;
-  background: var(--glass);
+  background: rgba(255,255,255,.09);
   box-shadow: 0 15px 50px #00000035;
   backdrop-filter: blur(12px);
 }
@@ -116,9 +110,7 @@ input {
   font-size: 1rem;
 }
 
-input::placeholder {
-  color: #d8c5df;
-}
+input::placeholder { color: #d8c5df; }
 
 button {
   padding: 14px 23px;
@@ -145,7 +137,8 @@ button.secondary {
 
 .message {
   min-height: 25px;
-  color: #ffd166;
+  color: var(--gold);
+  margin-top: 10px;
 }
 
 .heart {
@@ -168,9 +161,7 @@ button.secondary {
   animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
 .letter {
   text-align: left;
@@ -224,7 +215,7 @@ footer {
 <div id="particles"></div>
 
 <main>
-  <!-- SCREEN 1: LOGIN -->
+  <!-- SCREEN 1: PASSWORD -->
   <section class="screen active" id="login">
     <div class="heart">💌</div>
     <h1>A Special Surprise</h1>
@@ -232,11 +223,12 @@ footer {
 
     <div class="card">
       <h2>Restricted Access</h2>
-      <p style="margin:12px 0 20px">Only one legendary mom can enter.</p>
+      <p style="margin:12px 0 20px">
+        Only one legendary mom can enter.
+      </p>
 
       <input id="password" type="password"
-        placeholder="Enter the secret code"
-        autocomplete="off">
+        placeholder="Enter the secret code" autocomplete="off">
 
       <button onclick="checkPassword()" style="margin-top:16px">
         Unlock Surprise 🔐
@@ -245,7 +237,7 @@ footer {
     </div>
   </section>
 
-  <!-- SCREEN 2: BIRTHDAY VERIFICATION -->
+  <!-- SCREEN 2: BIRTHDAY -->
   <section class="screen" id="verify">
     <div class="heart">🎂</div>
     <h1>Identity Confirmed?</h1>
@@ -253,10 +245,13 @@ footer {
 
     <div class="card">
       <h2>When is your birthday?</h2>
-      <p style="margin:12px 0 20px">Enter the day and month as DD/MM.</p>
+      <p style="margin:12px 0 20px">
+        Enter the day and month.
+      </p>
 
-      <input id="birthday" placeholder="DD/MM"
-        inputmode="numeric" maxlength="5">
+      <input id="birthday" type="text"
+        placeholder="1910 or 19/10"
+        inputmode="numeric" autocomplete="off">
 
       <button onclick="checkBirthday()" style="margin-top:16px">
         Confirm Birthday 🎁
@@ -269,7 +264,7 @@ footer {
   <section class="screen" id="loading">
     <div class="loader"></div>
     <h1>Preparing Something Special...</h1>
-    <p>Collecting love, memories, and a little birthday magic. ✨</p>
+    <p>Collecting love, memories, and birthday magic. ✨</p>
   </section>
 
   <!-- SCREEN 4: CELEBRATION -->
@@ -286,8 +281,9 @@ footer {
 
     <button onclick="showScreen('letter')">Open Your Letter 💌</button>
 
-    <button class="secondary" onclick="toggleMusic()"
-      id="musicButton">🎵 Play Shape of You</button>
+    <button class="secondary" id="musicButton" onclick="toggleMusic()">
+      🎵 Play Shape of You
+    </button>
 
     <div class="card" id="songPlayer">
       <h2 style="margin-bottom:12px">🎶 Shape of You</h2>
@@ -298,15 +294,14 @@ footer {
       <div class="video-frame">
         <iframe id="youtubePlayer"
           src="about:blank"
-          title="Ed Sheeran - Shape of You official music video"
+          title="Ed Sheeran - Shape of You"
           allow="autoplay; encrypted-media; picture-in-picture"
           referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
+          allowfullscreen></iframe>
       </div>
 
       <p class="small" style="margin-top:12px">
-        Tap play in the video to start the song.
+        If it doesn't start automatically, tap Play in the video.
       </p>
     </div>
   </section>
@@ -337,9 +332,7 @@ Love you so much! ❤️ Also 67 lol ..</div>
       <p style="margin-top:15px">
         One birthday. Countless memories. A lifetime of love.
       </p>
-      <p style="margin-top:15px">
-        Thank you for being you. ❤️
-      </p>
+      <p style="margin-top:15px">Thank you for being you. ❤️</p>
     </div>
 
     <button onclick="showScreen('celebration')">
@@ -347,7 +340,7 @@ Love you so much! ❤️ Also 67 lol ..</div>
     </button>
 
     <button class="secondary" onclick="toggleMusic()">
-      🎵 Play / Pause Song
+      🎵 Play / Hide Song
     </button>
   </section>
 
@@ -355,21 +348,17 @@ Love you so much! ❤️ Also 67 lol ..</div>
 </main>
 
 <script>
-/*
-  Change SECRET_PASSWORD if you want a different code.
-  Current code: 19101984
-*/
 const SECRET_PASSWORD = "19101984";
-const BIRTHDAY_DAY_MONTH = "19/10";
+
+// Accepted formats: 1910, 19/10, 19-10, and 19.10.
+const ACCEPTED_BIRTHDAYS = ["1910", "19/10", "19-10", "19.10"];
 
 function showScreen(id) {
   document.querySelectorAll(".screen").forEach(screen => {
     screen.classList.remove("active");
   });
 
-  const next = document.getElementById(id);
-  if (next) next.classList.add("active");
-
+  document.getElementById(id).classList.add("active");
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -379,34 +368,33 @@ function checkPassword() {
 
   if (entered === SECRET_PASSWORD) {
     message.textContent = "Access granted. Welcome, Mom! 💖";
-    setTimeout(() => showScreen("verify"), 700);
+    setTimeout(() => showScreen("verify"), 500);
   } else {
-    message.textContent = "Hmm... incorrect code. Try again! 🔎";
+    message.textContent = "Incorrect code. Try again! 🔎";
   }
 }
 
 function checkBirthday() {
-  const entered = document.getElementById("birthday").value.trim();
+  const entered = document.getElementById("birthday").value
+    .trim()
+    .replace(/\s/g, "");
+
   const message = document.getElementById("birthdayMessage");
 
-  if (entered === BIRTHDAY_DAY_MONTH) {
+  if (ACCEPTED_BIRTHDAYS.includes(entered)) {
     message.textContent = "Birthday verified! Let the magic begin! 🎉";
     showScreen("loading");
 
     setTimeout(() => {
       showScreen("celebration");
       launchConfetti();
-    }, 2400);
+    }, 2000);
   } else {
-    message.textContent = "That doesn't look right. Try DD/MM! 🎂";
+    message.textContent = "Try 1910, 19/10, 19-10, or 19.10! 🎂";
   }
 }
 
-/*
-  MUSIC FIX:
-  The YouTube iframe is loaded only after the button is clicked.
-  This avoids an unnecessary video loading before the user wants it.
-*/
+// Load the YouTube player when requested; unload it when hidden.
 let musicIsOpen = false;
 
 function toggleMusic() {
@@ -418,32 +406,28 @@ function toggleMusic() {
 
   if (musicIsOpen) {
     player.classList.add("visible");
-
     iframe.src =
       "https://www.youtube-nocookie.com/embed/JGwWNGJdvx8?autoplay=1&rel=0";
 
     if (button) button.textContent = "✖ Hide Music Player";
   } else {
     player.classList.remove("visible");
-
-    // Unload the video so the music stops when the player is closed.
     iframe.src = "about:blank";
 
     if (button) button.textContent = "🎵 Play Shape of You";
   }
 }
 
-// Make Enter work on the password screen.
+// Enter key support.
 document.getElementById("password").addEventListener("keydown", event => {
   if (event.key === "Enter") checkPassword();
 });
 
-// Make Enter work on birthday verification.
 document.getElementById("birthday").addEventListener("keydown", event => {
   if (event.key === "Enter") checkBirthday();
 });
 
-// Falling petals and hearts.
+// Falling petals, hearts, and sparkles.
 const particleContainer = document.getElementById("particles");
 const particleSymbols = ["🌸", "💗", "✨", "🌷", "💕"];
 
@@ -461,13 +445,12 @@ for (let i = 0; i < 24; i++) {
   particleContainer.appendChild(particle);
 }
 
-// Confetti celebration.
+// Birthday confetti.
 function launchConfetti() {
   const symbols = ["🎉", "🎊", "✨", "💖", "🌸"];
 
   for (let i = 0; i < 65; i++) {
     const piece = document.createElement("span");
-
     piece.textContent =
       symbols[Math.floor(Math.random() * symbols.length)];
 
@@ -478,7 +461,8 @@ function launchConfetti() {
     piece.style.pointerEvents = "none";
     piece.style.fontSize = (16 + Math.random() * 18) + "px";
     piece.style.transition =
-      "transform " + (2 + Math.random() * 2) + "s linear, opacity 3s";
+      "transform " + (2 + Math.random() * 2) +
+      "s linear, opacity 3s";
 
     document.body.appendChild(piece);
 
