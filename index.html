@@ -4,222 +4,382 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Secret for Mom ❤️</title>
+<meta name="theme-color" content="#250d25">
+<title>A Secret for Swapna ❤️</title>
 
 <style>
 * { box-sizing: border-box; }
+
+:root {
+  --pink: #ff8fbd;
+  --light: #fff0f7;
+  --gold: #ffe1a6;
+}
 
 body {
   margin: 0;
   min-height: 100vh;
   font-family: Georgia, serif;
-  background: #000;
   color: white;
   text-align: center;
+  background: #09050c;
   overflow-x: hidden;
 }
+
+button, input { font: inherit; }
 
 .screen {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 25px;
+  align-items: center;
+  padding: 26px 18px 40px;
+  position: relative;
+  overflow: hidden;
+  animation: enter .65s ease both;
 }
 
 .hidden { display: none !important; }
 
-h1 {
-  font-size: clamp(2rem, 8vw, 3.5rem);
-  color: #ffb6d5;
-  text-shadow: 0 0 20px #ff4f9a;
+#login {
+  background: radial-gradient(ellipse, #251127, #050407 72%);
 }
 
-p { line-height: 1.8; font-size: 1.1rem; }
+#verify {
+  background: radial-gradient(ellipse at top, #512442, #100815 75%);
+}
+
+#loading {
+  background: #170b19;
+}
+
+#celebration, #letter, #finale {
+  background:
+    radial-gradient(ellipse at 15% 5%, #ffb8d3aa, transparent 40%),
+    radial-gradient(ellipse at 90% 90%, #a3427e, transparent 45%),
+    linear-gradient(145deg, #34132f, #842b60, #e779a5);
+}
+
+h1 {
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  line-height: 1.15;
+  color: var(--light);
+  text-shadow: 0 0 24px #ff60a5a0;
+  margin: 18px 0;
+}
+
+h2 {
+  color: #ffe0ed;
+  line-height: 1.4;
+}
+
+p {
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.eyebrow {
+  color: var(--pink);
+  letter-spacing: 4px;
+  font-size: .8rem;
+}
 
 input, button {
-  width: min(100%, 300px);
+  width: min(100%, 310px);
   padding: 15px;
-  margin: 10px;
-  border-radius: 14px;
-  font-size: 1rem;
+  margin: 9px;
+  border-radius: 15px;
 }
 
 input {
-  background: #171017;
-  border: 1px solid #ff8dbd;
+  background: #160f19;
+  border: 1px solid var(--pink);
   color: white;
   text-align: center;
+  outline-offset: 4px;
 }
 
 button {
-  background: linear-gradient(90deg, #ff65a5, #ffb3cf);
-  color: #381022;
-  border: none;
+  background: linear-gradient(110deg, #ff7eb3, #ffd0e2);
+  color: #42172d;
+  border: 1px solid #ffffff50;
   font-weight: bold;
   cursor: pointer;
+  box-shadow: 0 5px 20px #17051035;
+  transition: transform .2s, box-shadow .2s;
+}
+
+button:active {
+  transform: scale(.96);
+}
+
+button:hover {
+  box-shadow: 0 0 22px #ffb3d880;
+}
+
+.secondary {
+  background: #ffffff17;
+  border: 1px solid #ffffff70;
+  color: white;
 }
 
 .small {
-  color: #aaa;
-  font-size: .9rem;
+  color: #f5cfe0;
+  font-size: .88rem;
 }
 
-#celebration {
-  background:
-    radial-gradient(ellipse at top, #7a315d, transparent 65%),
-    linear-gradient(145deg, #240d25, #751e50, #f078a7);
-  position: relative;
+.glow {
+  animation: glow 2s ease-in-out infinite alternate;
 }
 
-#celebration h1 {
-  color: #fff0f7;
-  animation: glow 2s infinite alternate;
-}
-
-.message {
-  max-width: 600px;
-  padding: 24px;
-  background: #ffffff18;
-  border: 1px solid #ffffff55;
-  border-radius: 24px;
-  backdrop-filter: blur(5px);
-}
-
-.big-flowers {
-  font-size: clamp(2rem, 9vw, 4rem);
+.bloom {
+  font-size: clamp(2.5rem, 10vw, 4.5rem);
   animation: float 3s ease-in-out infinite;
 }
 
-#loader {
-  color: #ffb6d5;
-  letter-spacing: 3px;
+.card {
+  width: min(100%, 580px);
+  padding: 25px 20px;
+  border: 1px solid #ffffff70;
+  border-radius: 25px;
+  background: #ffffff16;
+  box-shadow: 0 15px 50px #19071935;
+  backdrop-filter: blur(9px);
+}
+
+.card p { text-align: left; }
+
+.progress {
+  width: min(75%, 260px);
+  height: 4px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #ffffff30;
+  margin: 20px;
+}
+
+#progressBar {
+  width: 0;
+  height: 100%;
+  background: var(--pink);
+  transition: width .7s;
+}
+
+.choice-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  width: 100%;
+}
+
+.choice-row button { width: min(43%, 180px); }
+
+#toast {
+  min-height: 25px;
+  color: var(--gold);
+}
+
+.petal, .confetti, .floating-heart {
+  position: fixed;
+  pointer-events: none;
+  z-index: 10;
 }
 
 .petal {
-  position: fixed;
   top: -40px;
-  pointer-events: none;
   animation: fall linear forwards;
-  z-index: 5;
+}
+
+.confetti {
+  top: -20px;
+  animation: fall linear forwards;
+}
+
+.floating-heart {
+  bottom: -35px;
+  animation: rise 5s ease-in forwards;
+}
+
+#letterText {
+  white-space: pre-line;
+}
+
+#letterText p {
+  text-align: left;
+  margin: 0 0 16px;
+}
+
+.signature {
+  color: var(--gold);
+  font-size: 1.3rem;
+  font-style: italic;
+}
+
+@keyframes enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes glow {
-  from { text-shadow: 0 0 10px #ff6aaf; }
-  to { text-shadow: 0 0 35px #fff, 0 0 60px #ff4f9a; }
+  from { text-shadow: 0 0 8px #ff6aaf; }
+  to { text-shadow: 0 0 28px #fff, 0 0 48px #ff4f9a; }
 }
 
 @keyframes float {
-  50% { transform: translateY(-12px) rotate(5deg); }
+  50% { transform: translateY(-13px) rotate(5deg); }
 }
 
 @keyframes fall {
-  to { transform: translateY(110vh) rotate(600deg); }
+  to { transform: translateY(115vh) rotate(650deg); }
+}
+
+@keyframes rise {
+  to { transform: translateY(-115vh) rotate(25deg); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- SECRET PASSWORD -->
+<!-- PAGE 1: SECRET GATE -->
 <section id="login" class="screen">
-  <p style="letter-spacing:5px;color:#ffb6d5">
-    CLASSIFIED • FAMILY ONLY
-  </p>
-
-  <h1>SECRET IDENTIFICATION PASSWORD</h1>
-
-  <p>Access restricted. One special person only. ❤️</p>
+  <p class="eyebrow">CLASSIFIED • FAMILY ONLY</p>
+  <div class="bloom">⌁ ✦ ⌁</div>
+  <h1 class="glow">SECRET IDENTIFICATION PASSWORD</h1>
+  <p>One special person. One very special surprise. ❤️</p>
 
   <form id="passwordForm">
     <input id="password" type="password"
-      placeholder="Enter secret password" required>
+      placeholder="Enter secret password" autocomplete="off" required>
     <br>
-    <button type="submit">AUTHORIZE ACCESS</button>
+    <button type="submit">AUTHORIZE ACCESS →</button>
   </form>
-
-  <p id="passwordError" class="small"></p>
+  <p id="passwordError" class="small" aria-live="polite"></p>
+  <p class="small">UNAUTHORIZED BORING PEOPLE WILL BE DENIED.</p>
 </section>
 
-<!-- BIRTHDAY VERIFICATION -->
+<!-- PAGE 2: BIRTHDAY GATE -->
 <section id="verify" class="screen hidden">
-  <div class="big-flowers">🔐 ✨ 🔐</div>
+  <div class="bloom">🔐 ✨ 🔐</div>
+  <p class="eyebrow">SECOND SECURITY LAYER</p>
   <h1>IDENTITY VERIFICATION</h1>
   <p>Access granted. Now prove you're the birthday queen!</p>
-  <p>Enter your birthday below.</p>
 
   <form id="birthdayForm">
     <input id="day" type="number" min="1" max="31"
       placeholder="Birth day" required>
     <input id="month" type="number" min="1" max="12"
       placeholder="Birth month (1–12)" required>
-    <button type="submit">VERIFY IDENTITY</button>
+    <button type="submit">VERIFY IDENTITY →</button>
   </form>
-
-  <p id="birthdayError" class="small"></p>
+  <p id="birthdayError" class="small" aria-live="polite"></p>
 </section>
 
-<!-- DRAMATIC LOADING -->
+<!-- PAGE 3: DRAMATIC LOADING -->
 <section id="loading" class="screen hidden">
-  <div class="big-flowers">✨ 💗 ✨</div>
+  <div class="bloom">✨ 💗 ✨</div>
   <h1 id="loader">IDENTITY VERIFIED</h1>
-  <p id="loadingText">Opening a very special file...</p>
+  <div class="progress"><div id="progressBar"></div></div>
+  <p id="loadingText">Accessing the love archive...</p>
   <p>Preparing flowers, love and surprises...</p>
-  <div style="font-size:2rem">🌸 💗 🌷 💖 🌸</div>
 </section>
 
-<!-- BIRTHDAY SURPRISE -->
+<!-- PAGE 4: BIG REVEAL -->
 <section id="celebration" class="screen hidden">
-  <div class="big-flowers">🌸 🌷 💐 🌷 🌸</div>
+  <p class="eyebrow">A VERY IMPORTANT ANNOUNCEMENT</p>
+  <div class="bloom">🌸 🌷 💐 🌷 🌸</div>
+  <h1 class="glow">Happy Birthday, Swapna! ❤️</h1>
+  <div style="font-size:3.5rem" id="cake">🎂 💖 🎉</div>
 
-  <h1>Happy Birthday, Mom! ❤️</h1>
-
-  <div style="font-size:4rem">🎂 💖 🎉</div>
-
-  <div class="message">
-    <h2>To the most special person in my world</h2>
-
+  <div class="card">
+    <h2>Today is YOUR day!</h2>
     <p>
-      Mom, you deserve all the happiness, love and beautiful
-      moments in the world. Thank you for being there for me,
-      believing in me and making life special in ways I may
-      not always know how to explain.
+      The world has a birthday queen, and this little corner
+      of the internet belongs entirely to her.
     </p>
-
-    <p>
-      No website could ever show how much you mean to me.
-      But I made this little surprise just for you, with all
-      my love. 💗
-    </p>
-
-    <h2>Love you always, Mom! 💐</h2>
+    <p>Ready to unlock your birthday letter?</p>
+    <button id="openLetter">💌 Open Your Letter</button>
   </div>
 
-  <button id="musicButton">🎵 Play Birthday Music</button>
+  <button id="musicButton" class="secondary">🎵 Play Birthday Music</button>
+  <button id="confettiButton" class="secondary">🎉 MORE CONFETTI!</button>
   <p class="small">Made with love, just for you. ❤️</p>
 </section>
 
+<!-- PAGE 5: PERSONAL LETTER -->
+<section id="letter" class="screen hidden">
+  <p class="eyebrow">A MESSAGE FROM THE HEART</p>
+  <div class="bloom">💌 🌸 💌</div>
+  <h1>A Letter for Mom</h1>
+
+  <div class="card">
+    <div id="letterText" aria-live="polite">
+      <p>Dear Mom,</p>
+    </div>
+    <p id="letterHint" class="small">Your message is waiting...</p>
+  </div>
+
+  <button id="revealLetter">✨ Reveal My Message</button>
+  <button id="letterNext" class="hidden">Continue to the Finale →</button>
+  <button class="secondary backToParty">← Back to Birthday Party</button>
+</section>
+
+<!-- PAGE 6: FINALE -->
+<section id="finale" class="screen hidden">
+  <div class="bloom">🌹 💖 🌹</div>
+  <p class="eyebrow">END OF FILE • BEGINNING OF MEMORIES</p>
+  <h1 class="glow">Happy Birthday, Mom!</h1>
+
+  <div class="card">
+    <h2>Birthday Queen Status</h2>
+    <p style="font-size:1.5rem">👑 LEGENDARY 👑</p>
+    <p>Jurassic survival: confirmed.</p>
+    <p>Birthday cake: required.</p>
+    <p>67: mysteriously included. 💀</p>
+    <button id="finalSurprise">🎁 Open One Last Surprise</button>
+    <p id="finalMessage" class="hidden">
+      SURPRISE! 🎉💗<br>
+      This little website was made especially for you.
+    </p>
+  </div>
+
+  <button id="replay" class="secondary">↻ Replay the Birthday Experience</button>
+  <button class="secondary backToLetter">← Read Your Letter Again</button>
+</section>
+
 <script>
-const ACCESS_PASSWORD = "MOM";
+const ACCESS_PASSWORD = "19101984";
 const BIRTHDAY_DAY = "19";
 const BIRTHDAY_MONTH = "10";
 
-const screens = ["login", "verify", "loading", "celebration"];
+const screens = [
+  "login", "verify", "loading",
+  "celebration", "letter", "finale"
+];
 
 function showScreen(id) {
-  screens.forEach(screen => {
-    document.getElementById(screen).classList.add("hidden");
-  });
+  screens.forEach(name =>
+    document.getElementById(name).classList.add("hidden")
+  );
   document.getElementById(id).classList.remove("hidden");
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 document.getElementById("passwordForm").addEventListener("submit", e => {
   e.preventDefault();
-
   const entered = document.getElementById("password").value.trim();
 
-  if (entered.toUpperCase() === ACCESS_PASSWORD) {
+  if (entered === ACCESS_PASSWORD) {
+    document.getElementById("passwordError").textContent = "";
     showScreen("verify");
   } else {
     document.getElementById("passwordError").textContent =
@@ -229,124 +389,261 @@ document.getElementById("passwordForm").addEventListener("submit", e => {
 
 document.getElementById("birthdayForm").addEventListener("submit", e => {
   e.preventDefault();
+  const day = document.getElementById("day").value;
+  const month = document.getElementById("month").value;
 
-  const day = document.getElementById("day").value.trim();
-  const month = document.getElementById("month").value.trim();
-
-  if (day === BIRTHDAY_DAY && month === BIRTHDAY_MONTH) {
-    showScreen("loading");
-
-    let count = 0;
-    const messages = [
-      "IDENTITY VERIFIED...",
-      "ACCESSING LOVE ARCHIVE...",
-      "PREPARING YOUR SURPRISE...",
-      "UNLOCKING HAPPY MEMORIES...",
-      "SURPRISE READY!"
-    ];
-
-    const loader = document.getElementById("loader");
-    const loadingText = document.getElementById("loadingText");
-
-    const sequence = setInterval(() => {
-      loader.textContent = messages[Math.min(count, messages.length - 1)];
-      count++;
-
-      if (count >= messages.length) {
-        clearInterval(sequence);
-        setTimeout(() => {
-          showScreen("celebration");
-          makePetals();
-        }, 700);
-      }
-    }, 900);
-  } else {
+  if (day !== BIRTHDAY_DAY || month !== BIRTHDAY_MONTH) {
     document.getElementById("birthdayError").textContent =
       "IDENTITY NOT VERIFIED. Please try again.";
+    return;
   }
+
+  document.getElementById("birthdayError").textContent = "";
+  showScreen("loading");
+
+  const messages = [
+    "IDENTITY VERIFIED...",
+    "ACCESSING LOVE ARCHIVE...",
+    "PREPARING YOUR SURPRISE...",
+    "UNLOCKING BIRTHDAY MAGIC...",
+    "SURPRISE READY!"
+  ];
+
+  let count = 0;
+  const loader = document.getElementById("loader");
+  const loadingText = document.getElementById("loadingText");
+  const bar = document.getElementById("progressBar");
+
+  loader.textContent = messages[0];
+  bar.style.width = "0%";
+
+  const timer = setInterval(() => {
+    count++;
+    loader.textContent = messages[Math.min(count, messages.length - 1)];
+    bar.style.width = (count / (messages.length - 1) * 100) + "%";
+
+    if (count >= messages.length - 1) {
+      clearInterval(timer);
+      setTimeout(() => {
+        showScreen("celebration");
+        makePetals();
+        burstConfetti(100);
+      }, 650);
+    }
+  }, 800);
 });
 
 function makePetals() {
   const symbols = ["🌸", "💗", "🌷", "✨", "💕"];
-
-  for (let i = 0; i < 35; i++) {
+  for (let i = 0; i < 32; i++) {
     setTimeout(() => {
-      const petal = document.createElement("div");
-      petal.className = "petal";
-      petal.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-      petal.style.left = Math.random() * 100 + "vw";
-      petal.style.fontSize = (18 + Math.random() * 20) + "px";
-      petal.style.animationDuration = (4 + Math.random() * 5) + "s";
-      document.body.appendChild(petal);
-      setTimeout(() => petal.remove(), 10000);
-    }, i * 180);
+      const el = document.createElement("div");
+      el.className = "petal";
+      el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.fontSize = (18 + Math.random() * 20) + "px";
+      el.style.animationDuration = (5 + Math.random() * 5) + "s";
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 11000);
+    }, i * 140);
   }
 }
 
-// A synthesized birthday melody; no audio download required.
+function burstConfetti(amount = 60) {
+  const symbols = ["🎉", "✨", "💖", "🌸", "🎊", "⭐"];
+  for (let i = 0; i < amount; i++) {
+    setTimeout(() => {
+      const el = document.createElement("span");
+      el.className = "confetti";
+      el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.fontSize = (14 + Math.random() * 20) + "px";
+      el.style.animationDuration = (2.5 + Math.random() * 3) + "s";
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 6000);
+    }, i * 18);
+  }
+}
+
+function hearts() {
+  for (let i = 0; i < 12; i++) {
+    setTimeout(() => {
+      const el = document.createElement("span");
+      el.className = "floating-heart";
+      el.textContent = ["💗", "💕", "❤️", "✨"][i % 4];
+      el.style.left = Math.random() * 95 + "vw";
+      el.style.fontSize = (20 + Math.random() * 20) + "px";
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 5200);
+    }, i * 120);
+  }
+}
+
+document.getElementById("confettiButton").addEventListener("click", () => {
+  burstConfetti(120);
+  hearts();
+});
+
+document.getElementById("openLetter").addEventListener("click", () => {
+  showScreen("letter");
+});
+
+document.querySelectorAll(".backToParty").forEach(button => {
+  button.addEventListener("click", () => showScreen("celebration"));
+});
+
+document.getElementById("letterNext").addEventListener("click", () => {
+  showScreen("finale");
+  burstConfetti(70);
+  hearts();
+});
+
+document.querySelectorAll(".backToLetter").forEach(button => {
+  button.addEventListener("click", () => showScreen("letter"));
+});
+
+document.getElementById("finalSurprise").addEventListener("click", () => {
+  const message = document.getElementById("finalMessage");
+  message.classList.remove("hidden");
+  burstConfetti(100);
+  hearts();
+  document.getElementById("finalSurprise").textContent =
+    "🎁 SURPRISE UNLOCKED!";
+});
+
+document.getElementById("replay").addEventListener("click", () => {
+  document.getElementById("finalMessage").classList.add("hidden");
+  document.getElementById("finalSurprise").textContent =
+    "🎁 Open One Last Surprise";
+  showScreen("login");
+});
+
+document.getElementById("revealLetter").addEventListener("click", () => {
+  const letter = document.getElementById("letterText");
+  const hint = document.getElementById("letterHint");
+
+  letter.innerHTML = "";
+  hint.textContent = "A message, written just for you. ❤️";
+
+  const paragraphs = [
+    "Happy Birthday, Mom! 🎂🥳",
+    "Many, many happy returns of the day! I was checking out some historical archives earlier and confirmed it: you were actually born during the dinosaur era. Honestly, dodging asteroids and surviving the Jurassic period just to end up with me as your kid makes you an absolute legend! 🦕☄️",
+    "Thank you for being the best mom and for always having my back. I hope your day is filled with tons of laughter, love, and plenty of cake.",
+    "Love you so much! ❤️ Also 67 lol .."
+  ];
+
+  let index = 0;
+  const button = document.getElementById("revealLetter");
+  button.disabled = true;
+  button.textContent = "💗 Revealing your letter...";
+
+  function nextParagraph() {
+    if (index >= paragraphs.length) {
+      button.classList.add("hidden");
+      document.getElementById("letterNext").classList.remove("hidden");
+      hint.textContent = "End of letter. More birthday magic awaits. 🌸";
+      hearts();
+      burstConfetti(35);
+      return;
+    }
+
+    const p = document.createElement("p");
+    p.textContent = paragraphs[index];
+    p.style.opacity = "0";
+    p.style.transform = "translateY(10px)";
+    p.style.transition = "opacity .7s, transform .7s";
+    letter.appendChild(p);
+
+    requestAnimationFrame(() => {
+      p.style.opacity = "1";
+      p.style.transform = "translateY(0)";
+    });
+
+    index++;
+    setTimeout(nextParagraph, 1300);
+  }
+
+  nextParagraph();
+});
+
+// Synthesized birthday melody, started only after a button tap.
 let audioContext;
 let musicPlaying = false;
+let musicTimer;
 
-function playBirthdayMelody() {
+async function toggleMusic() {
+  const button = document.getElementById("musicButton");
   const AudioCtx = window.AudioContext || window.webkitAudioContext;
 
   if (!AudioCtx) {
-    alert("Music is not supported by this browser.");
+    button.textContent = "Music unavailable in this browser";
     return;
   }
 
   if (!audioContext) audioContext = new AudioCtx();
 
-  audioContext.resume();
+  if (musicPlaying) {
+    await audioContext.suspend();
+    musicPlaying = false;
+    clearTimeout(musicTimer);
+    button.textContent = "🎵 Resume Birthday Music";
+    return;
+  }
+
+  await audioContext.resume();
   musicPlaying = true;
+  button.textContent = "⏸ Pause Birthday Music";
 
-  const button = document.getElementById("musicButton");
-  button.textContent = "🎵 Birthday music playing...";
-
-  // Notes for the familiar birthday melody.
+  // A brighter, bell-like arrangement of the birthday melody.
   const notes = [
-    [392, .32], [392, .18], [440, .5], [392, .5],
-    [523, .5], [494, .9],
-    [392, .32], [392, .18], [440, .5], [392, .5],
-    [587, .5], [523, .9],
-    [392, .32], [392, .18], [784, .5], [659, .5],
-    [523, .5], [494, .5], [440, .9],
-    [698, .32], [698, .18], [659, .5], [523, .5],
-    [587, .5], [523, 1]
+    [392,.3],[392,.3],[440,.6],[392,.6],[523,.6],[494,.9],
+    [392,.3],[392,.3],[440,.6],[392,.6],[587,.6],[523,.9],
+    [392,.3],[392,.3],[784,.6],[659,.6],[523,.6],[494,.6],[440,.9],
+    [698,.3],[698,.3],[659,.6],[523,.6],[587,.6],[523,1.1]
   ];
 
-  let start = audioContext.currentTime + 0.1;
+  const start = audioContext.currentTime + .15;
+  let t = start;
 
-  notes.forEach(([frequency, duration]) => {
-    const oscillator = audioContext.createOscillator();
+  notes.forEach(([freq, duration], i) => {
+    const osc = audioContext.createOscillator();
     const gain = audioContext.createGain();
+    const overtone = audioContext.createOscillator();
+    const overtoneGain = audioContext.createGain();
 
-    oscillator.type = "sine";
-    oscillator.frequency.value = frequency;
-    gain.gain.setValueAtTime(0.0001, start);
-    gain.gain.exponentialRampToValueAtTime(0.16, start + 0.03);
-    gain.gain.setValueAtTime(0.16, start + duration * 0.7);
-    gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+    osc.type = "sine";
+    osc.frequency.value = freq;
+    overtone.type = "triangle";
+    overtone.frequency.value = freq * 2;
 
-    oscillator.connect(gain);
+    gain.gain.setValueAtTime(.0001, t);
+    gain.gain.exponentialRampToValueAtTime(.10, t + .025);
+    gain.gain.setValueAtTime(.10, t + duration * .65);
+    gain.gain.exponentialRampToValueAtTime(.0001, t + duration);
+
+    overtoneGain.gain.setValueAtTime(.0001, t);
+    overtoneGain.gain.exponentialRampToValueAtTime(.025, t + .03);
+    overtoneGain.gain.exponentialRampToValueAtTime(.0001, t + duration);
+
+    osc.connect(gain);
     gain.connect(audioContext.destination);
-    oscillator.start(start);
-    oscillator.stop(start + duration);
+    overtone.connect(overtoneGain);
+    overtoneGain.connect(audioContext.destination);
 
-    start += duration + 0.06;
+    osc.start(t);
+    overtone.start(t);
+    osc.stop(t + duration + .02);
+    overtone.stop(t + duration + .02);
+    t += duration + .09;
   });
 
-  setTimeout(() => {
+  musicTimer = setTimeout(() => {
     musicPlaying = false;
     button.textContent = "🎵 Play Birthday Music Again";
-  }, (start - audioContext.currentTime) * 1000);
+  }, (t - start) * 1000);
 }
 
-document.getElementById("musicButton").addEventListener("click", () => {
-  if (!musicPlaying) playBirthdayMelody();
-});
+document.getElementById("musicButton").addEventListener("click", toggleMusic);
 </script>
-
 </body>
 </html>
-
