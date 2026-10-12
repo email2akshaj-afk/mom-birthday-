@@ -52,12 +52,13 @@ footer{padding:24px 0 8px;font-size:.85rem;color:#8b7d87}
 
 <body>
 <div id="particles" aria-hidden="true"></div>
-<main>
 
+<main>
 <section class="screen active" id="login">
 <div class="heart">💌</div>
 <h1>A Special Surprise</h1>
 <p>A little something made with love...</p>
+
 <div class="card">
 <h2>Restricted Access</h2>
 <p style="margin:12px 0 20px">Only one legendary mom can enter.</p>
@@ -71,6 +72,7 @@ footer{padding:24px 0 8px;font-size:.85rem;color:#8b7d87}
 <div class="heart">🎂</div>
 <h1>Identity Confirmed?</h1>
 <p>One last question before the surprise...</p>
+
 <div class="card">
 <h2>When is your birthday?</h2>
 <p style="margin:12px 0 20px">Enter the day and month.</p>
@@ -89,22 +91,27 @@ footer{padding:24px 0 8px;font-size:.85rem;color:#8b7d87}
 <section class="screen" id="celebration">
 <div class="heart">🎉</div>
 <h1>Happy Birthday!</h1>
-<h2>Swapna ❤️</h2>
+<h2>Mom ❤️</h2>
 <p>Today is all about celebrating you!</p>
+
 <div class="card">
 <p>🌸 A wonderful day for a wonderful mom. 🌸</p>
 <p style="margin-top:12px">Ready for your birthday surprise?</p>
 </div>
+
 <button onclick="showScreen('letter')">Open Your Letter 💌</button>
 <button class="secondary" id="musicButton" onclick="toggleMusic()">🎵 Play Shape of You</button>
 
 <div class="card" id="songPlayer">
 <h2 style="margin-bottom:12px">🎶 Shape of You</h2>
 <p class="small" style="margin-bottom:15px">Ed Sheeran · Official YouTube video</p>
+
 <div class="video-frame">
 <iframe id="youtubePlayer" src="about:blank" title="Ed Sheeran - Shape of You" allow="autoplay; encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
+
 <p class="small" style="margin-top:12px">If the embedded player doesn't load, open the song directly on YouTube.</p>
+
 <div class="music-actions">
 <a class="button-link" href="https://www.youtube.com/watch?v=JGwWNGJdvx8" target="_blank" rel="noopener noreferrer">Open Song on YouTube ↗</a>
 <button class="secondary" onclick="toggleMusic()">Hide Player</button>
@@ -115,6 +122,7 @@ footer{padding:24px 0 8px;font-size:.85rem;color:#8b7d87}
 <section class="screen" id="letter">
 <div class="heart">❤️</div>
 <h1>Dear Mom...</h1>
+
 <div class="card letter">Happy Birthday, Mom! 🎂🥳
 
 Many, many happy returns of the day! I was checking out some historical archives earlier and confirmed it: you were actually born during the dinosaur era. Honestly, dodging asteroids and surviving the Jurassic period just to end up with me as your kid makes you an absolute legend! 🦕☄️
@@ -122,26 +130,31 @@ Many, many happy returns of the day! I was checking out some historical archives
 Thank you for being the best mom and for always having my back. I hope your day is filled with tons of laughter, love, and plenty of cake.
 
 Love you so much! ❤️ Also 67 lol ..</div>
+
 <button onclick="showScreen('teaser')">The Last Surprise 🎁</button>
 </section>
 
 <section class="screen" id="teaser">
 <div class="heart">👀</div>
 <h1>Wait... Before You Go</h1>
+
 <div class="card">
 <h2>Did you think that was everything?</h2>
 <p style="margin-top:14px">I might have one tiny little thing left... 🤭</p>
 </div>
+
 <button onclick="showScreen('fakeout')">Wait, what? 🤨</button>
 </section>
 
 <section class="screen" id="fakeout">
 <div class="heart">😂</div>
 <h1>Okay, I Was Lying.</h1>
+
 <div class="card">
 <h2>There's actually one more thing!</h2>
 <p style="margin-top:14px">A few memories with my favourite person. ❤️</p>
 </div>
+
 <button onclick="showScreen('gallery')">Show Me! 📸</button>
 </section>
 
@@ -149,34 +162,44 @@ Love you so much! ❤️ Also 67 lol ..</div>
 <div class="heart">📸</div>
 <h1>Our Little Memories</h1>
 <p>A few moments with the best mom ever. ❤️</p>
+
 <div class="gallery" id="photoGallery">
-<!-- Replace each placeholder later with an image, e.g.:
-<div class="gallery-item"><img src="photos/mom-1.jpg" alt="A happy memory with Mom"><div class="gallery-caption">One of my favourite memories ❤️</div></div>
+<!-- Later, replace each placeholder with an image, for example:
+<div class="gallery-item">
+  <img src="photos/mom-1.jpg" alt="A happy memory with Mom">
+  <div class="gallery-caption">One of my favourite memories ❤️</div>
+</div>
 -->
+
 <div class="gallery-item">
 <div class="photo-placeholder">📷<br><strong>Photo 1 goes here</strong><br><span class="small">Add a favourite picture with Mom</span></div>
 <div class="gallery-caption">One of my favourite memories ❤️</div>
 </div>
+
 <div class="gallery-item">
 <div class="photo-placeholder">🌷<br><strong>Photo 2 goes here</strong><br><span class="small">Add another special moment</span></div>
 <div class="gallery-caption">A moment worth keeping forever ✨</div>
 </div>
+
 <div class="gallery-item">
 <div class="photo-placeholder">💗<br><strong>Photo 3 goes here</strong><br><span class="small">Add one more lovely picture</span></div>
 <div class="gallery-caption">Love you, Mom! 💖</div>
 </div>
 </div>
+
 <button onclick="showScreen('finale')">One Last Message 💖</button>
 </section>
 
 <section class="screen" id="finale">
 <div class="heart">💖</div>
 <h1>You're Legendary!</h1>
+
 <div class="card">
 <h2>Happy Birthday, Mom! 🎂</h2>
 <p style="margin-top:15px">One birthday. Countless memories. A lifetime of love.</p>
 <p style="margin-top:15px">Thank you for being you. ❤️</p>
 </div>
+
 <button onclick="showScreen('celebration')">Back to the Celebration 🎉</button>
 <button class="secondary" onclick="showScreen('celebration');toggleMusic()">🎵 Play / Hide Song</button>
 </section>
@@ -185,19 +208,24 @@ Love you so much! ❤️ Also 67 lol ..</div>
 </main>
 
 <script>
-const SECRET_PASSWORD = "19101984";
+const SECRET_PASSWORD = "OCT19";
 const ACCEPTED_BIRTHDAYS = ["1910", "19/10", "19-10", "19.10"];
 
 function showScreen(id) {
-  document.querySelectorAll(".screen").forEach(screen => screen.classList.remove("active"));
+  document.querySelectorAll(".screen").forEach(screen => {
+    screen.classList.remove("active");
+  });
+
   const target = document.getElementById(id);
   if (target) target.classList.add("active");
-  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  window.scrollTo({top: 0, behavior: "smooth"});
 }
 
 function checkPassword() {
   const entered = document.getElementById("password").value.trim();
   const message = document.getElementById("loginMessage");
+
   if (entered === SECRET_PASSWORD) {
     message.textContent = "Access granted. Welcome, Mom! 💖";
     setTimeout(() => showScreen("verify"), 500);
@@ -209,9 +237,11 @@ function checkPassword() {
 function checkBirthday() {
   const entered = document.getElementById("birthday").value.trim().replace(/\s/g, "");
   const message = document.getElementById("birthdayMessage");
+
   if (ACCEPTED_BIRTHDAYS.includes(entered)) {
     message.textContent = "Birthday verified! Let the magic begin! 🎉";
     showScreen("loading");
+
     setTimeout(() => {
       showScreen("celebration");
       launchConfetti();
@@ -222,19 +252,23 @@ function checkBirthday() {
 }
 
 let musicIsOpen = false;
+
 function toggleMusic() {
   const player = document.getElementById("songPlayer");
   const iframe = document.getElementById("youtubePlayer");
   const button = document.getElementById("musicButton");
+
   musicIsOpen = !musicIsOpen;
 
   if (musicIsOpen) {
     player.classList.add("visible");
     iframe.src = "https://www.youtube.com/embed/JGwWNGJdvx8?autoplay=1&rel=0";
+
     if (button) button.textContent = "✖ Hide Music Player";
   } else {
     player.classList.remove("visible");
     iframe.src = "about:blank";
+
     if (button) button.textContent = "🎵 Play Shape of You";
   }
 }
@@ -242,25 +276,28 @@ function toggleMusic() {
 document.getElementById("password").addEventListener("keydown", event => {
   if (event.key === "Enter") checkPassword();
 });
+
 document.getElementById("birthday").addEventListener("keydown", event => {
   if (event.key === "Enter") checkBirthday();
 });
 
 const particleContainer = document.getElementById("particles");
 const particleSymbols = ["🌸", "💗", "✨", "🌷", "💕"];
+
 for (let i = 0; i < 20; i++) {
-  const particle = document.createElement("span");
-  particle.className = "petal";
-  particle.textContent = particleSymbols[Math.floor(Math.random() * particleSymbols.length)];
-  particle.style.left = Math.random() * 100 + "%";
-  particle.style.animationDuration = (7 + Math.random() * 12) + "s";
-  particle.style.animationDelay = (-Math.random() * 18) + "s";
-  particle.style.fontSize = (12 + Math.random() * 18) + "px";
-  particleContainer.appendChild(particle);
+  const p = document.createElement("span");
+  p.className = "petal";
+  p.textContent = particleSymbols[Math.floor(Math.random() * particleSymbols.length)];
+  p.style.left = Math.random() * 100 + "%";
+  p.style.animationDuration = (7 + Math.random() * 12) + "s";
+  p.style.animationDelay = (-Math.random() * 18) + "s";
+  p.style.fontSize = (12 + Math.random() * 18) + "px";
+  particleContainer.appendChild(p);
 }
 
 function launchConfetti() {
   const symbols = ["🎉", "🎊", "✨", "💖", "🌸"];
+
   for (let i = 0; i < 65; i++) {
     const piece = document.createElement("span");
     piece.textContent = symbols[Math.floor(Math.random() * symbols.length)];
@@ -271,11 +308,14 @@ function launchConfetti() {
     piece.style.pointerEvents = "none";
     piece.style.fontSize = (16 + Math.random() * 18) + "px";
     piece.style.transition = "transform " + (2 + Math.random() * 2) + "s linear, opacity 3s";
+
     document.body.appendChild(piece);
+
     requestAnimationFrame(() => {
       piece.style.transform = "translateY(" + (window.innerHeight + 100) + "px) rotate(" + (Math.random() * 1000) + "deg)";
       piece.style.opacity = "0";
     });
+
     setTimeout(() => piece.remove(), 4500);
   }
 }
