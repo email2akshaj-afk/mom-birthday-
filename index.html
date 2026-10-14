@@ -42,9 +42,30 @@ button.secondary,.button-link.secondary{background:#fff;color:#725565;border:1px
 .gallery-item{width:100%;padding:12px;background:#fff;border:1px solid #f0dce3;border-radius:22px;box-shadow:0 12px 32px #a94d6c12}
 .gallery-caption{padding:12px 6px 3px;color:#725565;font-size:.98rem}
 .photo-placeholder{padding:28px 18px;border:2px dashed #efc4d2;border-radius:16px;background:#fff8fb;color:#8e6878}
-.cat-art{width:min(100%,320px);padding:28px 15px;border-radius:24px;background:linear-gradient(135deg,#fff0f5,#fff9df);box-shadow:0 12px 32px #a94d6c18}
-.cat-art .cat{font-size:120px;line-height:1.2}
-.cat-art .sixtyseven{font-size:48px;font-weight:900;color:#ef5d86}
+
+/* Exact 67 cat GIF surprise */
+.cat-art{
+  width:min(100%,320px);
+  padding:20px 15px;
+  border-radius:24px;
+  background:#fff;
+  box-shadow:0 12px 32px #a94d6c18;
+}
+.cat-art .sixtyseven{
+  font-size:clamp(64px,18vw,96px);
+  font-weight:900;
+  line-height:1;
+  color:#000;
+  margin-bottom:10px;
+}
+.cat-art img{
+  display:block;
+  width:100%;
+  max-width:292px;
+  height:auto;
+  margin:0 auto;
+  border-radius:8px;
+}
 .gallery-note{max-width:520px;color:var(--muted);font-size:.95rem}
 footer{padding:24px 0 8px;font-size:.85rem;color:#8b7d87}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}}
@@ -134,11 +155,11 @@ Love you so much! ❤️ Also 67 lol ..</div>
 <button onclick="showScreen('fakeout')">Wait, what? 🤨</button>
 </section>
 
+<!-- Updated fakeout: large 6 7 + the actual uploaded GIF -->
 <section class="screen" id="fakeout">
-<div class="cat-art" role="img" aria-label="A silly 67 cat surprise">
-<div class="cat">🐱</div>
-<div class="sixtyseven">67 😂</div>
-<p>THE LEGENDARY CAT</p>
+<div class="cat-art">
+  <div class="sixtyseven">6 7</div>
+  <img src="cat67.gif" alt="The six-seven cat GIF">
 </div>
 <div class="heart">😂</div>
 <h1>Okay, I Was Lying.</h1>
