@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#fff8f4">
 <title>Happy Birthday, Mom! ❤️</title>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--pink:#ff6b91;--coral:#ff9278;--ink:#342c3b;--muted:#716875}
@@ -43,15 +44,15 @@ button.secondary,.button-link.secondary{background:#fff;color:#725565;border:1px
 .gallery-caption{padding:12px 6px 3px;color:#725565;font-size:.98rem}
 .photo-placeholder{padding:28px 18px;border:2px dashed #efc4d2;border-radius:16px;background:#fff8fb;color:#8e6878}
 
-/* Six-seven surprise */
-.cat-art{width:min(100%,320px);padding:20px 15px;border-radius:24px;background:#fff;box-shadow:0 12px 32px #a94d6c18}
-.cat-art .sixtyseven{font-size:clamp(64px,18vw,96px);font-weight:900;line-height:1;color:#000;margin-bottom:10px}
-.cat-art video{display:block;width:100%;max-width:292px;height:auto;margin:0 auto;border-radius:8px;background:#fff}
+/* The actual uploaded 67 cat video */
+.cat-art{width:100%;max-width:590px;min-height:300px;padding:12px;border-radius:32px;background:#fff;box-shadow:0 12px 32px #a94d6c18;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cat-video{display:block;width:100%;height:auto;max-height:480px;object-fit:contain;border-radius:20px;background:#fff}
 .gallery-note{max-width:520px;color:var(--muted);font-size:.95rem}
 footer{padding:24px 0 8px;font-size:.85rem;color:#8b7d87}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}}
 </style>
 </head>
+
 <body>
 <div id="particles" aria-hidden="true"></div>
 <main>
@@ -98,16 +99,16 @@ footer{padding:24px 0 8px;font-size:.85rem;color:#8b7d87}
 <p style="margin-top:12px">Ready for your birthday surprise?</p>
 </div>
 <button onclick="showScreen('letter')">Open Your Letter 💌</button>
-<button class="secondary" id="musicButton" onclick="toggleMusic()">🎵 Play Shape of You</button>
+<button class="secondary" id="musicButton" onclick="toggleMusic()">🎵 Play Song</button>
+
 <div class="card" id="songPlayer">
-<h2 style="margin-bottom:12px">🎶 Shape of You</h2>
-<p class="small" style="margin-bottom:15px">Ed Sheeran · Official YouTube video</p>
+<h2 id="songTitle" style="margin-bottom:12px">🎶 Your Favourite Song</h2>
+<p class="small" style="margin-bottom:15px">Music for Mom ❤️</p>
 <div class="video-frame">
-<iframe id="youtubePlayer" src="about:blank" title="Ed Sheeran - Shape of You" allow="autoplay; encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe id="youtubePlayer" src="about:blank" title="Birthday music" allow="autoplay; encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
-<p class="small" style="margin-top:12px">If the player doesn't load, open the song directly on YouTube.</p>
 <div class="music-actions">
-<a class="button-link" href="https://www.youtube.com/watch?v=JGwWNGJdvx8" target="_blank" rel="noopener noreferrer">Open Song on YouTube ↗</a>
+<a class="button-link" id="openSong" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">Open Song on YouTube ↗</a>
 <button class="secondary" onclick="toggleMusic()">Hide Player</button>
 </div>
 </div>
@@ -138,8 +139,7 @@ Love you so much! ❤️ Also 67 lol ..</div>
 
 <section class="screen" id="fakeout">
 <div class="cat-art">
-<div class="sixtyseven">6 7</div>
-<video autoplay muted loop playsinline preload="metadata" aria-label="The six-seven cat video">
+<video class="cat-video" autoplay loop muted playsinline preload="auto" aria-label="The 67 cat animation">
 <source src="VID-20261014-WA0000.mp4" type="video/mp4">
 Your browser cannot play this video.
 </video>
@@ -191,7 +191,7 @@ Your browser cannot play this video.
 <p style="margin-top:15px">Thank you for being you. ❤️</p>
 </div>
 <button onclick="showScreen('celebration')">Back to the Celebration 🎉</button>
-<button class="secondary" onclick="showScreen('celebration');toggleMusic()">🎵 Play / Hide Song</button>
+<button class="secondary" onclick="showScreen('celebration')">Back to Music 🎵</button>
 </section>
 
 <footer>Made with ❤️ for Mom · Birthday Edition</footer>
@@ -200,6 +200,14 @@ Your browser cannot play this video.
 <script>
 const SECRET_PASSWORD = "oct 19";
 const ACCEPTED_BIRTHDAYS = ["1910", "19/10", "19-10", "19.10"];
+
+/*
+  When Dad tells you Mom's favourite song, update these three values:
+  SONG_EMBED_URL, SONG_DIRECT_URL, and SONG_LABEL.
+*/
+const SONG_EMBED_URL = "";
+const SONG_DIRECT_URL = "https://www.youtube.com/";
+const SONG_LABEL = "🎶 Your Favourite Song";
 
 function showScreen(id) {
   document.querySelectorAll(".screen").forEach(screen => screen.classList.remove("active"));
@@ -243,20 +251,27 @@ function toggleMusic() {
   musicIsOpen = !musicIsOpen;
 
   if (musicIsOpen) {
+    if (!SONG_EMBED_URL) {
+      document.getElementById("songTitle").textContent = "🎵 Song coming soon!";
+      iframe.src = "about:blank";
+      document.getElementById("openSong").href = SONG_DIRECT_URL;
+    } else {
+      document.getElementById("songTitle").textContent = SONG_LABEL;
+      iframe.src = SONG_EMBED_URL;
+      document.getElementById("openSong").href = SONG_DIRECT_URL;
+    }
     player.classList.add("visible");
-    iframe.src = "https://www.youtube.com/embed/JGwWNGJdvx8?autoplay=1&rel=0";
     if (button) button.textContent = "✖ Hide Music Player";
   } else {
     player.classList.remove("visible");
     iframe.src = "about:blank";
-    if (button) button.textContent = "🎵 Play Shape of You";
+    if (button) button.textContent = "🎵 Play Song";
   }
 }
 
 document.getElementById("password").addEventListener("keydown", event => {
   if (event.key === "Enter") checkPassword();
 });
-
 document.getElementById("birthday").addEventListener("keydown", event => {
   if (event.key === "Enter") checkBirthday();
 });
