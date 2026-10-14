@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#fff8f4">
 <title>Happy Birthday, Mom! ❤️</title>
-
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--pink:#ff6b91;--coral:#ff9278;--gold:#ffd166;--ink:#342c3b;--muted:#716875}
@@ -51,11 +50,10 @@ footer{padding:24px 0 8px;font-size:.85rem;color:#8b7d87}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
-
 <body>
 <div id="particles" aria-hidden="true"></div>
-
 <main>
+
 <section class="screen active" id="login">
 <div class="heart">💌</div>
 <h1>A Special Surprise</h1>
@@ -99,7 +97,6 @@ footer{padding:24px 0 8px;font-size:.85rem;color:#8b7d87}
 </div>
 <button onclick="showScreen('letter')">Open Your Letter 💌</button>
 <button class="secondary" id="musicButton" onclick="toggleMusic()">🎵 Play Shape of You</button>
-
 <div class="card" id="songPlayer">
 <h2 style="margin-bottom:12px">🎶 Shape of You</h2>
 <p class="small" style="margin-bottom:15px">Ed Sheeran · Official YouTube video</p>
@@ -153,22 +150,10 @@ Love you so much! ❤️ Also 67 lol ..</div>
 <h1>Our Little Memories</h1>
 <p>A few moments with the best mom ever. ❤️</p>
 <div class="gallery" id="photoGallery">
-<div class="gallery-item">
-<div class="photo-placeholder">📷<br><strong>Photo 1 goes here</strong><br><span class="small">Add a favourite picture with Mom</span></div>
-<div class="gallery-caption">One of my favourite memories ❤️</div>
-</div>
-<div class="gallery-item">
-<div class="photo-placeholder">🌷<br><strong>Photo 2 goes here</strong><br><span class="small">Add another special moment</span></div>
-<div class="gallery-caption">A moment worth keeping forever ✨</div>
-</div>
-<div class="gallery-item">
-<div class="photo-placeholder">💗<br><strong>Photo 3 goes here</strong><br><span class="small">Add one more lovely picture</span></div>
-<div class="gallery-caption">Love you, Mom! 💖</div>
-</div>
-<div class="gallery-item">
-<div class="photo-placeholder">🥰<br><strong>Photo 4 goes here</strong><br><span class="small">One more special memory</span></div>
-<div class="gallery-caption">My favourite person, always 💕</div>
-</div>
+<div class="gallery-item"><div class="photo-placeholder">📷<br><strong>Photo 1 goes here</strong><br><span class="small">Add a favourite picture with Mom</span></div><div class="gallery-caption">One of my favourite memories ❤️</div></div>
+<div class="gallery-item"><div class="photo-placeholder">🌷<br><strong>Photo 2 goes here</strong><br><span class="small">Add another special moment</span></div><div class="gallery-caption">A moment worth keeping forever ✨</div></div>
+<div class="gallery-item"><div class="photo-placeholder">💗<br><strong>Photo 3 goes here</strong><br><span class="small">Add one more lovely picture</span></div><div class="gallery-caption">Love you, Mom! 💖</div></div>
+<div class="gallery-item"><div class="photo-placeholder">🥰<br><strong>Photo 4 goes here</strong><br><span class="small">One more special memory</span></div><div class="gallery-caption">My favourite person, always 💕</div></div>
 </div>
 <p class="gallery-note">There are even more memories waiting on the next page. 👀</p>
 <button onclick="showScreen('galleryMore')">There were too many photos to show on this one page, lol.</button>
@@ -180,22 +165,10 @@ Love you so much! ❤️ Also 67 lol ..</div>
 <h1>And There's More!</h1>
 <p>Okay, maybe I had a few too many photos. 😂❤️</p>
 <div class="gallery" id="morePhotoGallery">
-<div class="gallery-item">
-<div class="photo-placeholder">📷<br><strong>Photo 5 goes here</strong><br><span class="small">Add another favourite photo</span></div>
-<div class="gallery-caption">Another memory to keep ✨</div>
-</div>
-<div class="gallery-item">
-<div class="photo-placeholder">🌸<br><strong>Photo 6 goes here</strong><br><span class="small">Add another special moment</span></div>
-<div class="gallery-caption">A little moment, a lot of love 💗</div>
-</div>
-<div class="gallery-item">
-<div class="photo-placeholder">💞<br><strong>Photo 7 goes here</strong><br><span class="small">Add one more photo</span></div>
-<div class="gallery-caption">More memories with you ❤️</div>
-</div>
-<div class="gallery-item">
-<div class="photo-placeholder">🎂<br><strong>Photo 8 goes here</strong><br><span class="small">Add a birthday memory</span></div>
-<div class="gallery-caption">The best is having you as my mom 🥹</div>
-</div>
+<div class="gallery-item"><div class="photo-placeholder">📷<br><strong>Photo 5 goes here</strong><br><span class="small">Add another favourite photo</span></div><div class="gallery-caption">Another memory to keep ✨</div></div>
+<div class="gallery-item"><div class="photo-placeholder">🌸<br><strong>Photo 6 goes here</strong><br><span class="small">Add another special moment</span></div><div class="gallery-caption">A little moment, a lot of love 💗</div></div>
+<div class="gallery-item"><div class="photo-placeholder">💞<br><strong>Photo 7 goes here</strong><br><span class="small">Add one more photo</span></div><div class="gallery-caption">More memories with you ❤️</div></div>
+<div class="gallery-item"><div class="photo-placeholder">🎂<br><strong>Photo 8 goes here</strong><br><span class="small">Add a birthday memory</span></div><div class="gallery-caption">The best is having you as my mom 🥹</div></div>
 </div>
 <button onclick="showScreen('gallery')">← Back to the First Gallery</button>
 <button onclick="showScreen('finale')">One Last Message 💖</button>
@@ -217,7 +190,10 @@ Love you so much! ❤️ Also 67 lol ..</div>
 </main>
 
 <script>
-const SECRET_PASSWORD = "OCP19";
+/* FIRST-SCREEN PASSWORD: exact lowercase "oct 19" */
+const SECRET_PASSWORD = "oct 19";
+
+/* Birthday verification is separate from the first-screen password. */
 const ACCEPTED_BIRTHDAYS = ["1910", "19/10", "19-10", "19.10"];
 
 function showScreen(id) {
@@ -228,8 +204,9 @@ function showScreen(id) {
 }
 
 function checkPassword() {
-  const entered = document.getElementById("password").value.trim().toUpperCase().replace(/\s+/g, "");
+  const entered = document.getElementById("password").value;
   const message = document.getElementById("loginMessage");
+
   if (entered === SECRET_PASSWORD) {
     message.textContent = "Access granted. Welcome, Mom! 💖";
     setTimeout(() => showScreen("verify"), 500);
@@ -241,6 +218,7 @@ function checkPassword() {
 function checkBirthday() {
   const entered = document.getElementById("birthday").value.trim().replace(/\s/g, "");
   const message = document.getElementById("birthdayMessage");
+
   if (ACCEPTED_BIRTHDAYS.includes(entered)) {
     message.textContent = "Birthday verified! Let the magic begin! 🎉";
     showScreen("loading");
@@ -254,11 +232,14 @@ function checkBirthday() {
 }
 
 let musicIsOpen = false;
+
 function toggleMusic() {
   const player = document.getElementById("songPlayer");
   const iframe = document.getElementById("youtubePlayer");
   const button = document.getElementById("musicButton");
+
   musicIsOpen = !musicIsOpen;
+
   if (musicIsOpen) {
     player.classList.add("visible");
     iframe.src = "https://www.youtube.com/embed/JGwWNGJdvx8?autoplay=1&rel=0";
@@ -273,12 +254,14 @@ function toggleMusic() {
 document.getElementById("password").addEventListener("keydown", event => {
   if (event.key === "Enter") checkPassword();
 });
+
 document.getElementById("birthday").addEventListener("keydown", event => {
   if (event.key === "Enter") checkBirthday();
 });
 
 const particleContainer = document.getElementById("particles");
 const particleSymbols = ["🌸", "💗", "✨", "🌷", "💕"];
+
 for (let i = 0; i < 20; i++) {
   const p = document.createElement("span");
   p.className = "petal";
@@ -292,6 +275,7 @@ for (let i = 0; i < 20; i++) {
 
 function launchConfetti() {
   const symbols = ["🎉", "🎊", "✨", "💖", "🌸"];
+
   for (let i = 0; i < 65; i++) {
     const piece = document.createElement("span");
     piece.textContent = symbols[Math.floor(Math.random() * symbols.length)];
@@ -303,10 +287,12 @@ function launchConfetti() {
     piece.style.fontSize = (16 + Math.random() * 18) + "px";
     piece.style.transition = "transform " + (2 + Math.random() * 2) + "s linear, opacity 3s";
     document.body.appendChild(piece);
+
     requestAnimationFrame(() => {
       piece.style.transform = "translateY(" + (window.innerHeight + 100) + "px) rotate(" + (Math.random() * 1000) + "deg)";
       piece.style.opacity = "0";
     });
+
     setTimeout(() => piece.remove(), 4500);
   }
 }
