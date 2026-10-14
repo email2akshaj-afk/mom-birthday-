@@ -8,7 +8,7 @@
 <title>Happy Birthday, Mom! ❤️</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--pink:#ff6b91;--coral:#ff9278;--gold:#ffd166;--ink:#342c3b;--muted:#716875}
+:root{--pink:#ff6b91;--coral:#ff9278;--ink:#342c3b;--muted:#716875}
 body{min-height:100vh;overflow-x:hidden;background:linear-gradient(145deg,#fff8f4,#fff1f4 52%,#effaff);color:var(--ink);font-family:"Trebuchet MS",Arial,sans-serif;text-align:center}
 #particles{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
 .petal{position:absolute;top:-40px;animation:fall linear infinite;opacity:.65}
@@ -20,14 +20,13 @@ main{position:relative;z-index:1;width:min(92%,720px);margin:auto;padding:28px 0
 h1{font-size:clamp(2.15rem,8vw,3.8rem);line-height:1.12;color:#ef5d86;letter-spacing:-.04em}
 h2{font-size:clamp(1.35rem,5vw,2rem);color:#de6382}
 p{font-size:1.05rem;line-height:1.75}
-.heart{display:inline-block;font-size:3.8rem;filter:drop-shadow(0 8px 12px #ff7e9d25);animation:heartbeat 1.4s infinite}
+.heart{display:inline-block;font-size:3.8rem;animation:heartbeat 1.4s infinite}
 @keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
 .card{width:100%;padding:clamp(22px,5vw,32px);border:1px solid #f3dce3;border-radius:26px;background:rgba(255,255,255,.88);box-shadow:0 14px 42px #a94d6c12}
 input{width:100%;max-width:360px;padding:15px;border:1px solid #e8cbd5;border-radius:14px;outline:none;background:#fff;color:var(--ink);text-align:center;font-size:1rem}
 input:focus{border-color:var(--pink);box-shadow:0 0 0 4px #ff6b911c}
-input::placeholder{color:#9b8b95}
-button,.button-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border:0;border-radius:30px;background:linear-gradient(135deg,var(--pink),var(--coral));color:white;font-weight:800;font-size:1rem;text-decoration:none;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 8px 20px #ff6b9126}
-button:hover,.button-link:hover{transform:translateY(-2px);box-shadow:0 10px 25px #ff6b9138}
+button,.button-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border:0;border-radius:30px;background:linear-gradient(135deg,var(--pink),var(--coral));color:white;font-weight:800;font-size:1rem;text-decoration:none;cursor:pointer;transition:transform .2s;box-shadow:0 8px 20px #ff6b9126}
+button:hover,.button-link:hover{transform:translateY(-2px)}
 button.secondary,.button-link.secondary{background:#fff;color:#725565;border:1px solid #edd3dc;box-shadow:none}
 .message{min-height:25px;color:#d64e79;margin-top:10px}
 .loader{width:62px;height:62px;border:5px solid #f5dce4;border-top-color:var(--pink);border-radius:50%;animation:spin 1s linear infinite}
@@ -41,13 +40,14 @@ button.secondary,.button-link.secondary{background:#fff;color:#725565;border:1px
 .music-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:16px}
 .gallery{width:100%;display:flex;flex-direction:column;gap:20px}
 .gallery-item{width:100%;padding:12px;background:#fff;border:1px solid #f0dce3;border-radius:22px;box-shadow:0 12px 32px #a94d6c12}
-.gallery-item img{display:block;width:100%;height:auto;max-height:75vh;object-fit:contain;border-radius:14px;background:#fff0f4}
 .gallery-caption{padding:12px 6px 3px;color:#725565;font-size:.98rem}
 .photo-placeholder{padding:28px 18px;border:2px dashed #efc4d2;border-radius:16px;background:#fff8fb;color:#8e6878}
-.cat-image{display:block;width:min(100%,320px);max-height:45vh;object-fit:contain;border-radius:18px;box-shadow:0 12px 32px #a94d6c18}
+.cat-art{width:min(100%,320px);padding:28px 15px;border-radius:24px;background:linear-gradient(135deg,#fff0f5,#fff9df);box-shadow:0 12px 32px #a94d6c18}
+.cat-art .cat{font-size:120px;line-height:1.2}
+.cat-art .sixtyseven{font-size:48px;font-weight:900;color:#ef5d86}
 .gallery-note{max-width:520px;color:var(--muted);font-size:.95rem}
 footer{padding:24px 0 8px;font-size:.85rem;color:#8b7d87}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -103,7 +103,7 @@ footer{padding:24px 0 8px;font-size:.85rem;color:#8b7d87}
 <div class="video-frame">
 <iframe id="youtubePlayer" src="about:blank" title="Ed Sheeran - Shape of You" allow="autoplay; encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
-<p class="small" style="margin-top:12px">If the embedded player doesn't load, open the song directly on YouTube.</p>
+<p class="small" style="margin-top:12px">If the player doesn't load, open the song directly on YouTube.</p>
 <div class="music-actions">
 <a class="button-link" href="https://www.youtube.com/watch?v=JGwWNGJdvx8" target="_blank" rel="noopener noreferrer">Open Song on YouTube ↗</a>
 <button class="secondary" onclick="toggleMusic()">Hide Player</button>
@@ -135,7 +135,11 @@ Love you so much! ❤️ Also 67 lol ..</div>
 </section>
 
 <section class="screen" id="fakeout">
-<img class="cat-image" src="photos/67-cat.jpg" alt="The 67 cat surprise" onerror="this.style.display='none'">
+<div class="cat-art" role="img" aria-label="A silly 67 cat surprise">
+<div class="cat">🐱</div>
+<div class="sixtyseven">67 😂</div>
+<p>THE LEGENDARY CAT</p>
+</div>
 <div class="heart">😂</div>
 <h1>Okay, I Was Lying.</h1>
 <div class="card">
@@ -149,7 +153,7 @@ Love you so much! ❤️ Also 67 lol ..</div>
 <div class="heart">📸</div>
 <h1>Our Little Memories</h1>
 <p>A few moments with the best mom ever. ❤️</p>
-<div class="gallery" id="photoGallery">
+<div class="gallery">
 <div class="gallery-item"><div class="photo-placeholder">📷<br><strong>Photo 1 goes here</strong><br><span class="small">Add a favourite picture with Mom</span></div><div class="gallery-caption">One of my favourite memories ❤️</div></div>
 <div class="gallery-item"><div class="photo-placeholder">🌷<br><strong>Photo 2 goes here</strong><br><span class="small">Add another special moment</span></div><div class="gallery-caption">A moment worth keeping forever ✨</div></div>
 <div class="gallery-item"><div class="photo-placeholder">💗<br><strong>Photo 3 goes here</strong><br><span class="small">Add one more lovely picture</span></div><div class="gallery-caption">Love you, Mom! 💖</div></div>
@@ -164,7 +168,7 @@ Love you so much! ❤️ Also 67 lol ..</div>
 <div class="heart">🖼️</div>
 <h1>And There's More!</h1>
 <p>Okay, maybe I had a few too many photos. 😂❤️</p>
-<div class="gallery" id="morePhotoGallery">
+<div class="gallery">
 <div class="gallery-item"><div class="photo-placeholder">📷<br><strong>Photo 5 goes here</strong><br><span class="small">Add another favourite photo</span></div><div class="gallery-caption">Another memory to keep ✨</div></div>
 <div class="gallery-item"><div class="photo-placeholder">🌸<br><strong>Photo 6 goes here</strong><br><span class="small">Add another special moment</span></div><div class="gallery-caption">A little moment, a lot of love 💗</div></div>
 <div class="gallery-item"><div class="photo-placeholder">💞<br><strong>Photo 7 goes here</strong><br><span class="small">Add one more photo</span></div><div class="gallery-caption">More memories with you ❤️</div></div>
@@ -190,10 +194,7 @@ Love you so much! ❤️ Also 67 lol ..</div>
 </main>
 
 <script>
-/* FIRST-SCREEN PASSWORD: exact lowercase "oct 19" */
 const SECRET_PASSWORD = "oct 19";
-
-/* Birthday verification is separate from the first-screen password. */
 const ACCEPTED_BIRTHDAYS = ["1910", "19/10", "19-10", "19.10"];
 
 function showScreen(id) {
@@ -206,7 +207,6 @@ function showScreen(id) {
 function checkPassword() {
   const entered = document.getElementById("password").value;
   const message = document.getElementById("loginMessage");
-
   if (entered === SECRET_PASSWORD) {
     message.textContent = "Access granted. Welcome, Mom! 💖";
     setTimeout(() => showScreen("verify"), 500);
@@ -218,7 +218,6 @@ function checkPassword() {
 function checkBirthday() {
   const entered = document.getElementById("birthday").value.trim().replace(/\s/g, "");
   const message = document.getElementById("birthdayMessage");
-
   if (ACCEPTED_BIRTHDAYS.includes(entered)) {
     message.textContent = "Birthday verified! Let the magic begin! 🎉";
     showScreen("loading");
@@ -237,7 +236,6 @@ function toggleMusic() {
   const player = document.getElementById("songPlayer");
   const iframe = document.getElementById("youtubePlayer");
   const button = document.getElementById("musicButton");
-
   musicIsOpen = !musicIsOpen;
 
   if (musicIsOpen) {
@@ -275,7 +273,6 @@ for (let i = 0; i < 20; i++) {
 
 function launchConfetti() {
   const symbols = ["🎉", "🎊", "✨", "💖", "🌸"];
-
   for (let i = 0; i < 65; i++) {
     const piece = document.createElement("span");
     piece.textContent = symbols[Math.floor(Math.random() * symbols.length)];
