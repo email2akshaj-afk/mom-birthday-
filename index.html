@@ -21,7 +21,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   background: #000;
 }
 
@@ -33,13 +33,8 @@ body {
   overflow-x: hidden;
 }
 
-button, input {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
+button, input { font: inherit; }
+button { cursor: pointer; }
 
 .screen {
   display: none;
@@ -57,31 +52,21 @@ button {
 
 .screen.active {
   display: flex;
-  animation: pageEnter .65s cubic-bezier(.2,.75,.25,1) both;
+  animation: pageEnter .55s cubic-bezier(.2,.75,.25,1) both;
 }
 
-/* Smooth page-like transition */
 .screen.leaving {
-  animation: pageThrow .35s ease-in both;
+  animation: pageThrow .25s ease-in both;
   pointer-events: none;
 }
 
 @keyframes pageEnter {
-  from {
-    opacity: 0;
-    transform: translateX(35px) rotateY(-5deg) scale(.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) rotateY(0) scale(1);
-  }
+  from { opacity: 0; transform: translateX(25px) scale(.99); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
 }
 
 @keyframes pageThrow {
-  to {
-    opacity: 0;
-    transform: translateX(-55px) rotateY(8deg) scale(.97);
-  }
+  to { opacity: 0; transform: translateX(-35px) scale(.98); }
 }
 
 #opening {
@@ -95,9 +80,11 @@ button {
   cursor: pointer;
 }
 
-#opening * {
-  display: none !important;
+#opening:not(.active) {
+  display: none;
 }
+
+#opening * { display: none !important; }
 
 h1 {
   font-size: clamp(2.2rem, 9vw, 4.4rem);
@@ -124,13 +111,8 @@ p {
   color: var(--gold);
 }
 
-.muted {
-  color: #c5b7c6;
-}
-
-.glow {
-  text-shadow: 0 0 24px #ff75a855;
-}
+.muted { color: #c5b7c6; }
+.glow { text-shadow: 0 0 24px #ff75a855; }
 
 .btn {
   position: relative;
@@ -146,9 +128,7 @@ p {
   transition: transform .2s, box-shadow .2s;
 }
 
-.btn:active {
-  transform: scale(.96);
-}
+.btn:active { transform: scale(.96); }
 
 .btn.secondary {
   color: var(--cream);
@@ -156,9 +136,7 @@ p {
   border-color: #ffffff30;
 }
 
-.small {
-  font-size: .9rem;
-}
+.small { font-size: .9rem; }
 
 #access {
   background:
@@ -166,9 +144,7 @@ p {
     #08060a;
 }
 
-.access-box {
-  width: min(100%, 370px);
-}
+.access-box { width: min(100%, 370px); }
 
 input {
   width: 100%;
@@ -182,14 +158,8 @@ input {
   outline: none;
 }
 
-input:focus {
-  border-color: var(--pink);
-}
-
-#error {
-  color: #ff9eae;
-  min-height: 22px;
-}
+input:focus { border-color: var(--pink); }
+#error { color: #ff9eae; min-height: 22px; }
 
 #intro {
   background:
@@ -254,9 +224,7 @@ input:focus {
     #090812;
 }
 
-#fakeout {
-  background: #050509;
-}
+#fakeout { background: #050509; }
 
 .video-frame {
   width: min(100%, 760px);
@@ -374,13 +342,8 @@ video {
 }
 
 @media (min-width: 700px) {
-  .photo-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .photo-slot {
-    min-height: 200px;
-  }
+  .photo-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .photo-slot { min-height: 200px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -395,32 +358,23 @@ video {
 
 <body>
 
-<!-- 1. Completely black opening screen -->
 <section id="opening" class="screen active" aria-label="Tap to begin"></section>
 
-<!-- 2. Password screen -->
 <section id="access" class="screen">
   <div class="access-box">
     <p class="eyebrow">A private little surprise</p>
     <h1 class="glow">PROVIDE<br>ACCESS</h1>
     <p class="muted">Some things are meant for one person only.</p>
-
     <form id="accessForm">
-      <input
-        id="password"
-        type="password"
+      <input id="password" type="password"
         placeholder="Enter the secret password"
-        autocomplete="off"
-        aria-label="Secret password"
-      >
+        autocomplete="off" aria-label="Secret password">
       <button class="btn" type="submit">UNLOCK THE SURPRISE ♥</button>
     </form>
-
     <p id="error" class="small" aria-live="polite"></p>
   </div>
 </section>
 
-<!-- 3. Introduction -->
 <section id="intro" class="screen">
   <div class="intro-symbol">♡</div>
   <p class="eyebrow">Access granted</p>
@@ -434,7 +388,6 @@ video {
   <button class="btn" onclick="goTo('celebration')">LET'S BEGIN ✨</button>
 </section>
 
-<!-- 4. Birthday celebration -->
 <section id="celebration" class="screen">
   <p class="eyebrow">October 19 · A special day</p>
   <h1 class="glow">Happy Birthday,<br><span style="color:var(--pink)">Mom!</span></h1>
@@ -446,15 +399,11 @@ video {
   <button class="btn" onclick="goTo('letter')">THERE'S A LETTER FOR YOU 💌</button>
 </section>
 
-<!-- 5. Your dinosaur letter -->
 <section id="letter" class="screen">
   <p class="eyebrow">Something from me to you</p>
-
   <article class="letter-card">
     <h2>Dear Mom, ❤️</h2>
-
     <p>Happy Birthday, Mom! 🎂🥳</p>
-
     <p>
       Many, many happy returns of the day! I was checking out some
       historical archives earlier and confirmed it: you were actually
@@ -462,24 +411,17 @@ video {
       surviving the Jurassic period just to end up with me as your kid
       makes you an absolute legend! 🦕☄️
     </p>
-
     <p>
       Thank you for being the best mom and for always having my back.
       I hope your day is filled with tons of laughter, love, and plenty
       of cake. Love you so much! ❤️
     </p>
-
     <p class="signature">By Akshu.</p>
-
-    <p style="text-align:right;font-size:.9rem">
-      Also 67 lol .. 💀
-    </p>
+    <p style="text-align:right;font-size:.9rem">Also 67 lol .. 💀</p>
   </article>
-
   <button class="btn" onclick="goTo('teaser')">OKAY, ONE MORE THING… 👀</button>
 </section>
 
-<!-- 6. Teaser -->
 <section id="teaser" class="screen">
   <p class="eyebrow">Wait a second…</p>
   <h1 class="glow">You thought<br>that was it?</h1>
@@ -490,72 +432,55 @@ video {
   <button class="btn" onclick="goTo('fakeout')">SHOW ME THE NEXT SURPRISE</button>
 </section>
 
-<!-- 7. Existing video: keep the MP4 in the repository root -->
 <section id="fakeout" class="screen">
   <p class="eyebrow">A very important announcement</p>
   <h2>Mom, please watch this. 🎬</h2>
-
   <div class="video-frame">
     <video id="fakeoutVideo" controls playsinline preload="metadata">
       <source src="./VID-20261014-WA0000.mp4" type="video/mp4">
       Your browser cannot play this video.
     </video>
   </div>
-
   <p class="muted small">Turn up the volume if you want. 😂</p>
-
   <button class="btn" onclick="goTo('gallery')">OKAY, WHAT'S NEXT? 💗</button>
 </section>
 
-<!-- 8. Photo gallery -->
 <section id="gallery" class="screen">
   <p class="eyebrow">Little moments, big memories</p>
   <h1 class="glow">Our Memories 📸</h1>
   <p class="muted">A few moments that deserve a place here.</p>
-
   <div class="photo-grid">
     <div class="photo-slot">♡<br>Our memory<br>Add photo 1</div>
     <div class="photo-slot">♡<br>Our memory<br>Add photo 2</div>
     <div class="photo-slot">♡<br>Our memory<br>Add photo 3</div>
     <div class="photo-slot">♡<br>Our memory<br>Add photo 4</div>
   </div>
-
   <button class="btn" onclick="goTo('galleryMore')">THERE'S MORE 📷</button>
 </section>
 
-<!-- 9. More photos -->
 <section id="galleryMore" class="screen">
   <p class="eyebrow">The memories continue</p>
   <h1 class="glow">Just a little more…</h1>
-
   <div class="photo-grid">
     <div class="photo-slot">♡<br>Our memory<br>Add photo 5</div>
     <div class="photo-slot">♡<br>Our memory<br>Add photo 6</div>
     <div class="photo-slot">♡<br>Our memory<br>Add photo 7</div>
     <div class="photo-slot">♡<br>Our memory<br>Add photo 8</div>
   </div>
-
   <button class="btn" onclick="goTo('finale')">ONE LAST SURPRISE ❤️</button>
 </section>
 
-<!-- 10. Finale -->
 <section id="finale" class="screen">
   <div style="font-size:3.5rem" class="heart">♥</div>
   <p class="eyebrow">One last thing</p>
   <h1 class="glow">Love you, Mom.</h1>
-
   <p style="max-width:480px">
     Thank you for everything you do, even the little things that
     sometimes go unnoticed. I hope today makes you smile as much
     as you make me smile.
   </p>
-
-  <p style="font-size:1.2rem;color:var(--gold)">
-    Happy Birthday! 🎂✨
-  </p>
-
+  <p style="font-size:1.2rem;color:var(--gold)">Happy Birthday! 🎂✨</p>
   <p class="signature" style="text-align:center">By Akshu.</p>
-
   <button class="btn" onclick="celebrateAgain()">MORE CONFETTI! 🎉</button>
   <button class="btn secondary" onclick="replay()">START AGAIN ↺</button>
 </section>
@@ -577,10 +502,8 @@ video {
     try {
       const AudioClass = window.AudioContext || window.webkitAudioContext;
       if (!AudioClass) return null;
-
       if (!audioContext) audioContext = new AudioClass();
       if (audioContext.state === "suspended") audioContext.resume();
-
       return audioContext;
     } catch {
       return null;
@@ -600,7 +523,6 @@ video {
     gain.gain.setValueAtTime(.0001, start);
     gain.gain.exponentialRampToValueAtTime(volume, start + .02);
     gain.gain.exponentialRampToValueAtTime(.0001, start + duration);
-
     oscillator.connect(gain);
     gain.connect(ctx.destination);
     oscillator.start(start);
@@ -635,17 +557,8 @@ video {
     if (video && !video.paused) video.pause();
   }
 
-  /*
-   * Fit each screen to the viewport automatically.
-   * Tall content remains scrollable, but transitions always
-   * position the new screen at the top.
-   */
-  function positionScreen(screen) {
-    window.scrollTo({
-      top: screen.offsetTop,
-      left: 0,
-      behavior: "auto"
-    });
+  function positionScreen() {
+    window.scrollTo(0, 0);
   }
 
   function showScreen(id, options = {}) {
@@ -653,20 +566,7 @@ video {
     if (!next) return;
 
     const { sound = true, confetti = false } = options;
-
     stopVideo();
-
-    const current = document.querySelector(".screen.active");
-
-    if (current && current.id === id) {
-      positionScreen(next);
-      return;
-    }
-
-    if (current) {
-      current.classList.remove("active", "leaving");
-      current.setAttribute("aria-hidden", "true");
-    }
 
     screens.forEach(screen => {
       screen.classList.remove("active", "leaving");
@@ -676,8 +576,7 @@ video {
     next.classList.add("active");
     next.setAttribute("aria-hidden", "false");
 
-    // Automatically bring the new screen into view.
-    positionScreen(next);
+    positionScreen();
 
     $("musicButton").style.display =
       id === "opening" || id === "access" ? "none" : "block";
@@ -685,11 +584,7 @@ video {
     if (sound) {
       if (id === "celebration" || id === "finale") {
         revealSound();
-      } else if (
-        id === "letter" ||
-        id === "gallery" ||
-        id === "galleryMore"
-      ) {
+      } else if (["letter", "gallery", "galleryMore"].includes(id)) {
         transitionSound();
         makePetals(18);
       } else {
@@ -700,9 +595,8 @@ video {
     if (confetti) makeConfetti(65);
   }
 
-  // Public navigation function used by the buttons.
   window.goTo = function(id) {
-    if (transitionBusy) return;
+    if (transitionBusy || !$(id)) return;
     transitionBusy = true;
 
     const current = document.querySelector(".screen.active");
@@ -720,13 +614,11 @@ video {
     }
   };
 
-  // Opening screen remains completely black until tapped.
   $("opening").addEventListener("click", () => {
     getAudio();
     showScreen("access");
   });
 
-  // Password remains oct 19.
   $("accessForm").addEventListener("submit", event => {
     event.preventDefault();
 
@@ -781,7 +673,6 @@ video {
     makePetals(24);
   };
 
-  // Optional synthesized music remains unchanged for now.
   const melody = [
     [523.25, .25], [659.25, .25], [783.99, .35],
     [659.25, .25], [587.33, .25], [659.25, .45],
@@ -813,11 +704,6 @@ video {
     clickSound();
   };
 
-  /*
-   * REPLAY FIX:
-   * Start again at the introduction.
-   * Do not return to the black screen or ask for the password again.
-   */
   window.replay = function() {
     stopVideo();
 
@@ -834,13 +720,14 @@ video {
     makePetals(20);
   };
 
-  // Set the correct initial accessibility states.
   screens.forEach(screen => {
     screen.setAttribute(
       "aria-hidden",
       screen.id === "opening" ? "false" : "true"
     );
   });
+
+  $("opening").style.display = "flex";
 })();
 </script>
 
