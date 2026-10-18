@@ -21,8 +21,7 @@
 }
 
 html {
-  scroll-behavior: auto;
-  background: #000;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -33,58 +32,40 @@ body {
   overflow-x: hidden;
 }
 
-button, input { font: inherit; }
-button { cursor: pointer; }
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
 
 .screen {
+  min-height: 100svh;
   display: none;
   position: relative;
-  min-height: 100svh;
-  width: 100%;
-  padding: 32px 20px;
+  padding: 30px 20px;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   text-align: center;
   overflow: hidden;
-  isolation: isolate;
 }
 
 .screen.active {
   display: flex;
-  animation: pageEnter .55s cubic-bezier(.2,.75,.25,1) both;
+  animation: screenIn 0.8s ease both;
 }
 
-.screen.leaving {
-  animation: pageThrow .25s ease-in both;
-  pointer-events: none;
+@keyframes screenIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes pageEnter {
-  from { opacity: 0; transform: translateX(25px) scale(.99); }
-  to { opacity: 1; transform: translateX(0) scale(1); }
+h1, h2, p {
+  position: relative;
+  z-index: 2;
 }
-
-@keyframes pageThrow {
-  to { opacity: 0; transform: translateX(-35px) scale(.98); }
-}
-
-#opening {
-  display: flex;
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  min-height: 100svh;
-  padding: 0;
-  background: #000;
-  cursor: pointer;
-}
-
-#opening:not(.active) {
-  display: none;
-}
-
-#opening * { display: none !important; }
 
 h1 {
   font-size: clamp(2.2rem, 9vw, 4.4rem);
@@ -98,8 +79,6 @@ h2 {
 }
 
 p {
-  position: relative;
-  z-index: 2;
   font-size: 1.08rem;
   line-height: 1.8;
 }
@@ -107,12 +86,17 @@ p {
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 4px;
-  font: .72rem Arial, sans-serif;
+  font: 0.72rem Arial, sans-serif;
   color: var(--gold);
 }
 
-.muted { color: #c5b7c6; }
-.glow { text-shadow: 0 0 24px #ff75a855; }
+.muted {
+  color: #c5b7c6;
+}
+
+.glow {
+  text-shadow: 0 0 24px #ff75a855;
+}
 
 .btn {
   position: relative;
@@ -128,7 +112,9 @@ p {
   transition: transform .2s, box-shadow .2s;
 }
 
-.btn:active { transform: scale(.96); }
+.btn:active {
+  transform: scale(.96);
+}
 
 .btn.secondary {
   color: var(--cream);
@@ -136,7 +122,21 @@ p {
   border-color: #ffffff30;
 }
 
-.small { font-size: .9rem; }
+.small {
+  font-size: .9rem;
+}
+
+#opening {
+  display: flex;
+  background: #000;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* The opening is deliberately completely black. */
+#opening * {
+  display: none !important;
+}
 
 #access {
   background:
@@ -144,7 +144,9 @@ p {
     #08060a;
 }
 
-.access-box { width: min(100%, 370px); }
+.access-box {
+  width: min(100%, 370px);
+}
 
 input {
   width: 100%;
@@ -158,8 +160,9 @@ input {
   outline: none;
 }
 
-input:focus { border-color: var(--pink); }
-#error { color: #ff9eae; min-height: 22px; }
+input:focus {
+  border-color: var(--pink);
+}
 
 #intro {
   background:
@@ -224,7 +227,9 @@ input:focus { border-color: var(--pink); }
     #090812;
 }
 
-#fakeout { background: #050509; }
+#fakeout {
+  background: #050509;
+}
 
 .video-frame {
   width: min(100%, 760px);
@@ -282,6 +287,10 @@ video {
   display: block;
 }
 
+.photo-slot .placeholder {
+  line-height: 1.8;
+}
+
 #finale {
   background:
     radial-gradient(ellipse at center, #6e254b, transparent 65%),
@@ -293,16 +302,13 @@ video {
   text-shadow: 0 0 30px #ff75a866;
 }
 
-.petal, .confetti {
-  position: fixed;
-  pointer-events: none;
-}
-
 .petal {
+  position: fixed;
   top: -30px;
-  z-index: 10;
-  opacity: .8;
+  z-index: 5;
+  pointer-events: none;
   animation: fall linear forwards;
+  opacity: .8;
 }
 
 @keyframes fall {
@@ -313,9 +319,11 @@ video {
 }
 
 .confetti {
+  position: fixed;
   width: 7px;
   height: 12px;
-  z-index: 11;
+  z-index: 6;
+  pointer-events: none;
   top: -20px;
   animation: confettiFall 3.5s linear forwards;
 }
@@ -325,6 +333,20 @@ video {
     transform: translate(var(--drift), 110vh) rotate(800deg);
     opacity: 0;
   }
+}
+
+.fade-line {
+  animation: fadeLine 1.4s ease both;
+}
+
+@keyframes fadeLine {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#error {
+  color: #ff9eae;
+  min-height: 22px;
 }
 
 #musicButton {
@@ -342,8 +364,13 @@ video {
 }
 
 @media (min-width: 700px) {
-  .photo-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .photo-slot { min-height: 200px; }
+  .photo-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .photo-slot {
+    min-height: 200px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -358,23 +385,27 @@ video {
 
 <body>
 
-<section id="opening" class="screen active" aria-label="Tap to begin"></section>
+<!-- SCREEN 1: Absolutely black. Tap anywhere to begin. -->
+<section id="opening" class="screen active" aria-label="Black opening screen"></section>
 
+<!-- SCREEN 2: Password access. -->
 <section id="access" class="screen">
   <div class="access-box">
     <p class="eyebrow">A private little surprise</p>
     <h1 class="glow">PROVIDE<br>ACCESS</h1>
     <p class="muted">Some things are meant for one person only.</p>
+
     <form id="accessForm">
-      <input id="password" type="password"
-        placeholder="Enter the secret password"
-        autocomplete="off" aria-label="Secret password">
+      <input id="password" type="password" placeholder="Enter the secret password"
+             autocomplete="off" aria-label="Secret password">
       <button class="btn" type="submit">UNLOCK THE SURPRISE ♥</button>
     </form>
+
     <p id="error" class="small" aria-live="polite"></p>
   </div>
 </section>
 
+<!-- SCREEN 3: Small introduction. -->
 <section id="intro" class="screen">
   <div class="intro-symbol">♡</div>
   <p class="eyebrow">Access granted</p>
@@ -388,6 +419,7 @@ video {
   <button class="btn" onclick="goTo('celebration')">LET'S BEGIN ✨</button>
 </section>
 
+<!-- SCREEN 4: Birthday celebration. -->
 <section id="celebration" class="screen">
   <p class="eyebrow">October 19 · A special day</p>
   <h1 class="glow">Happy Birthday,<br><span style="color:var(--pink)">Mom!</span></h1>
@@ -399,11 +431,17 @@ video {
   <button class="btn" onclick="goTo('letter')">THERE'S A LETTER FOR YOU 💌</button>
 </section>
 
+<!-- SCREEN 5: The dinosaur letter. -->
 <section id="letter" class="screen">
   <p class="eyebrow">Something from me to you</p>
+
   <article class="letter-card">
     <h2>Dear Mom, ❤️</h2>
-    <p>Happy Birthday, Mom! 🎂🥳</p>
+
+    <p>
+      Happy Birthday, Mom! 🎂🥳
+    </p>
+
     <p>
       Many, many happy returns of the day! I was checking out some
       historical archives earlier and confirmed it: you were actually
@@ -411,17 +449,26 @@ video {
       surviving the Jurassic period just to end up with me as your kid
       makes you an absolute legend! 🦕☄️
     </p>
+
     <p>
       Thank you for being the best mom and for always having my back.
       I hope your day is filled with tons of laughter, love, and plenty
       of cake. Love you so much! ❤️
     </p>
-    <p class="signature">By Akshu.</p>
-    <p style="text-align:right;font-size:.9rem">Also 67 lol .. 💀</p>
+
+    <p class="signature">
+      By Akshu.
+    </p>
+
+    <p style="text-align:right;font-size:.9rem">
+      Also 67 lol .. 💀
+    </p>
   </article>
+
   <button class="btn" onclick="goTo('teaser')">OKAY, ONE MORE THING… 👀</button>
 </section>
 
+<!-- SCREEN 6: Surprise teaser. -->
 <section id="teaser" class="screen">
   <p class="eyebrow">Wait a second…</p>
   <h1 class="glow">You thought<br>that was it?</h1>
@@ -432,60 +479,99 @@ video {
   <button class="btn" onclick="goTo('fakeout')">SHOW ME THE NEXT SURPRISE</button>
 </section>
 
+<!-- SCREEN 7: Video fakeout. Keep the video in the repository root. -->
 <section id="fakeout" class="screen">
   <p class="eyebrow">A very important announcement</p>
   <h2>Mom, please watch this. 🎬</h2>
+
   <div class="video-frame">
     <video id="fakeoutVideo" controls playsinline preload="metadata">
       <source src="./VID-20261014-WA0000.mp4" type="video/mp4">
       Your browser cannot play this video.
     </video>
   </div>
-  <p class="muted small">Turn up the volume if you want. 😂</p>
+
+  <p class="muted small">
+    Turn up the volume if you want. 😂
+  </p>
+
   <button class="btn" onclick="goTo('gallery')">OKAY, WHAT'S NEXT? 💗</button>
 </section>
 
+<!-- SCREEN 8: First photo gallery. Replace placeholders with your own photos. -->
 <section id="gallery" class="screen">
   <p class="eyebrow">Little moments, big memories</p>
   <h1 class="glow">Our Memories 📸</h1>
   <p class="muted">A few moments that deserve a place here.</p>
+
   <div class="photo-grid">
-    <div class="photo-slot">♡<br>Our memory<br>Add photo 1</div>
-    <div class="photo-slot">♡<br>Our memory<br>Add photo 2</div>
-    <div class="photo-slot">♡<br>Our memory<br>Add photo 3</div>
-    <div class="photo-slot">♡<br>Our memory<br>Add photo 4</div>
+    <div class="photo-slot">
+      <div class="placeholder">♡<br>Our memory<br><small>Add photo 1</small></div>
+    </div>
+    <div class="photo-slot">
+      <div class="placeholder">♡<br>Our memory<br><small>Add photo 2</small></div>
+    </div>
+    <div class="photo-slot">
+      <div class="placeholder">♡<br>Our memory<br><small>Add photo 3</small></div>
+    </div>
+    <div class="photo-slot">
+      <div class="placeholder">♡<br>Our memory<br><small>Add photo 4</small></div>
+    </div>
   </div>
+
   <button class="btn" onclick="goTo('galleryMore')">THERE'S MORE 📷</button>
 </section>
 
+<!-- SCREEN 9: More memories. -->
 <section id="galleryMore" class="screen">
   <p class="eyebrow">The memories continue</p>
   <h1 class="glow">Just a little more…</h1>
+
   <div class="photo-grid">
-    <div class="photo-slot">♡<br>Our memory<br>Add photo 5</div>
-    <div class="photo-slot">♡<br>Our memory<br>Add photo 6</div>
-    <div class="photo-slot">♡<br>Our memory<br>Add photo 7</div>
-    <div class="photo-slot">♡<br>Our memory<br>Add photo 8</div>
+    <div class="photo-slot">
+      <div class="placeholder">♡<br>Our memory<br><small>Add photo 5</small></div>
+    </div>
+    <div class="photo-slot">
+      <div class="placeholder">♡<br>Our memory<br><small>Add photo 6</small></div>
+    </div>
+    <div class="photo-slot">
+      <div class="placeholder">♡<br>Our memory<br><small>Add photo 7</small></div>
+    </div>
+    <div class="photo-slot">
+      <div class="placeholder">♡<br>Our memory<br><small>Add photo 8</small></div>
+    </div>
   </div>
+
   <button class="btn" onclick="goTo('finale')">ONE LAST SURPRISE ❤️</button>
 </section>
 
+<!-- SCREEN 10: Finale. -->
 <section id="finale" class="screen">
   <div style="font-size:3.5rem" class="heart">♥</div>
   <p class="eyebrow">One last thing</p>
   <h1 class="glow">Love you, Mom.</h1>
+
   <p style="max-width:480px">
     Thank you for everything you do, even the little things that
     sometimes go unnoticed. I hope today makes you smile as much
     as you make me smile.
   </p>
-  <p style="font-size:1.2rem;color:var(--gold)">Happy Birthday! 🎂✨</p>
-  <p class="signature" style="text-align:center">By Akshu.</p>
+
+  <p style="font-size:1.2rem;color:var(--gold)">
+    Happy Birthday! 🎂✨
+  </p>
+
+  <p class="signature" style="text-align:center">
+    By Akshu.
+  </p>
+
   <button class="btn" onclick="celebrateAgain()">MORE CONFETTI! 🎉</button>
   <button class="btn secondary" onclick="replay()">START AGAIN ↺</button>
 </section>
 
-<button id="musicButton" onclick="toggleMusic()">♫ Music: OFF</button>
+<button id="musicButton" onclick="toggleMusic()" aria-label="Toggle music">
+  ♫ Music
+</button>
 
 <script>
 (() => {
@@ -496,21 +582,26 @@ video {
   let musicOn = false;
   let musicTimer = null;
   let musicStep = 0;
-  let transitionBusy = false;
+  let currentScreen = "opening";
 
+  // All sound effects are synthesized; no extra sound files are needed.
   function getAudio() {
     try {
-      const AudioClass = window.AudioContext || window.webkitAudioContext;
-      if (!AudioClass) return null;
-      if (!audioContext) audioContext = new AudioClass();
+      const AudioContextClass =
+        window.AudioContext || window.webkitAudioContext;
+
+      if (!AudioContextClass) return null;
+
+      if (!audioContext) audioContext = new AudioContextClass();
       if (audioContext.state === "suspended") audioContext.resume();
+
       return audioContext;
     } catch {
       return null;
     }
   }
 
-  function tone(frequency, duration = .12, volume = .04, type = "sine", delay = 0) {
+  function tone(frequency, duration = 0.12, volume = 0.045, type = "sine", delay = 0) {
     const ctx = getAudio();
     if (!ctx) return;
 
@@ -520,36 +611,39 @@ video {
 
     oscillator.type = type;
     oscillator.frequency.setValueAtTime(frequency, start);
-    gain.gain.setValueAtTime(.0001, start);
-    gain.gain.exponentialRampToValueAtTime(volume, start + .02);
-    gain.gain.exponentialRampToValueAtTime(.0001, start + duration);
+
+    gain.gain.setValueAtTime(0.0001, start);
+    gain.gain.exponentialRampToValueAtTime(volume, start + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+
     oscillator.connect(gain);
     gain.connect(ctx.destination);
+
     oscillator.start(start);
-    oscillator.stop(start + duration + .03);
+    oscillator.stop(start + duration + 0.03);
   }
 
   function clickSound() {
-    tone(720, .07, .035);
-    tone(960, .08, .022, "sine", .045);
+    tone(720, 0.07, 0.035, "sine");
+    tone(960, 0.08, 0.022, "sine", 0.045);
   }
 
   function transitionSound() {
-    tone(440, .22, .035);
-    tone(554, .24, .035, "sine", .12);
-    tone(659, .32, .04, "sine", .24);
+    tone(440, 0.22, 0.035, "sine");
+    tone(554, 0.24, 0.035, "sine", 0.12);
+    tone(659, 0.32, 0.04, "sine", 0.24);
   }
 
   function revealSound() {
-    tone(523.25, .38, .045);
-    tone(659.25, .38, .045, "sine", .13);
-    tone(783.99, .5, .05, "sine", .26);
-    tone(1046.5, .7, .035, "sine", .42);
+    tone(523.25, 0.38, 0.045, "sine");
+    tone(659.25, 0.38, 0.045, "sine", 0.13);
+    tone(783.99, 0.5, 0.05, "sine", 0.26);
+    tone(1046.5, 0.7, 0.035, "sine", 0.42);
   }
 
   function errorSound() {
-    tone(220, .16, .035, "triangle");
-    tone(185, .18, .025, "triangle", .13);
+    tone(220, 0.16, 0.035, "triangle");
+    tone(185, 0.18, 0.025, "triangle", 0.13);
   }
 
   function stopVideo() {
@@ -557,66 +651,41 @@ video {
     if (video && !video.paused) video.pause();
   }
 
-  function positionScreen() {
-    window.scrollTo(0, 0);
-  }
-
-  function showScreen(id, options = {}) {
+  window.goTo = function(id) {
     const next = $(id);
     if (!next) return;
 
-    const { sound = true, confetti = false } = options;
     stopVideo();
 
     screens.forEach(screen => {
-      screen.classList.remove("active", "leaving");
+      screen.classList.remove("active");
       screen.setAttribute("aria-hidden", "true");
     });
 
     next.classList.add("active");
     next.setAttribute("aria-hidden", "false");
+    currentScreen = id;
 
-    positionScreen();
+    window.scrollTo({ top: 0, behavior: "instant" });
+
+    if (id === "celebration" || id === "finale") {
+      revealSound();
+      makeConfetti(id === "finale" ? 100 : 55);
+    } else if (id === "letter" || id === "gallery" || id === "galleryMore") {
+      transitionSound();
+      makePetals(18);
+    } else {
+      clickSound();
+    }
 
     $("musicButton").style.display =
       id === "opening" || id === "access" ? "none" : "block";
-
-    if (sound) {
-      if (id === "celebration" || id === "finale") {
-        revealSound();
-      } else if (["letter", "gallery", "galleryMore"].includes(id)) {
-        transitionSound();
-        makePetals(18);
-      } else {
-        clickSound();
-      }
-    }
-
-    if (confetti) makeConfetti(65);
-  }
-
-  window.goTo = function(id) {
-    if (transitionBusy || !$(id)) return;
-    transitionBusy = true;
-
-    const current = document.querySelector(".screen.active");
-
-    if (current && current.id !== id && current.id !== "opening") {
-      current.classList.add("leaving");
-
-      setTimeout(() => {
-        showScreen(id);
-        transitionBusy = false;
-      }, 250);
-    } else {
-      showScreen(id);
-      transitionBusy = false;
-    }
   };
 
+  // A completely black opening: any tap/click reveals access.
   $("opening").addEventListener("click", () => {
     getAudio();
-    showScreen("access");
+    goTo("access");
   });
 
   $("accessForm").addEventListener("submit", event => {
@@ -627,7 +696,7 @@ video {
     if (entered === "oct 19") {
       $("error").textContent = "";
       $("password").value = "";
-      showScreen("intro", { confetti: false });
+      goTo("intro");
       makePetals(24);
     } else {
       $("error").textContent = "Not quite. Try again ❤️";
@@ -673,17 +742,19 @@ video {
     makePetals(24);
   };
 
+  // Optional gentle synthesized music. No song is embedded by default.
+  // Browsers require a user interaction before audio can start.
   const melody = [
-    [523.25, .25], [659.25, .25], [783.99, .35],
-    [659.25, .25], [587.33, .25], [659.25, .45],
-    [523.25, .25], [587.33, .25], [659.25, .45],
-    [493.88, .25], [587.33, .25], [523.25, .5]
+    [523.25, 0.25], [659.25, 0.25], [783.99, 0.35],
+    [659.25, 0.25], [587.33, 0.25], [659.25, 0.45],
+    [523.25, 0.25], [587.33, 0.25], [659.25, 0.45],
+    [493.88, 0.25], [587.33, 0.25], [523.25, 0.5]
   ];
 
   function musicTick() {
     if (!musicOn) return;
     const [frequency, duration] = melody[musicStep % melody.length];
-    tone(frequency, duration * 1.5, .012, "sine");
+    tone(frequency, duration * 1.5, 0.012, "sine");
     musicStep++;
   }
 
@@ -711,25 +782,31 @@ video {
     musicTimer = null;
     musicOn = false;
     musicStep = 0;
-    $("musicButton").textContent = "♫ Music: OFF";
+    $("musicButton").textContent = "♫ Music";
+    $("musicButton").style.display = "none";
 
+    screens.forEach(screen => {
+      screen.classList.remove("active");
+      screen.setAttribute("aria-hidden", "true");
+    });
+
+    $("opening").classList.add("active");
+    $("opening").setAttribute("aria-hidden", "false");
     $("error").textContent = "";
     $("password").value = "";
-
-    showScreen("intro", { sound: true, confetti: false });
-    makePetals(20);
+    currentScreen = "opening";
+    window.scrollTo({ top: 0, behavior: "instant" });
   };
 
-  screens.forEach(screen => {
-    screen.setAttribute(
-      "aria-hidden",
-      screen.id === "opening" ? "false" : "true"
-    );
-  });
+  // Placeholder slots can be replaced with real photos in the HTML.
+  // Example:
+  // <div class="photo-slot"><img src="./mom-photo-1.jpg" alt="A memory together"></div>
 
-  $("opening").style.display = "flex";
+  screens.forEach(screen => {
+    screen.setAttribute("aria-hidden", screen.id === "opening" ? "false" : "true");
+  });
 })();
 </script>
 
 </body>
-</html> 
+</html>
