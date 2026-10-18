@@ -6,425 +6,807 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#000000">
 <title>For Mom ❤️</title>
-<style>
-:root{--pink:#ff7da8;--rose:#ffb3c7;--ink:#24131d}
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;background:#000}
-body{font-family:Georgia,"Times New Roman",serif;color:var(--ink);overflow-x:hidden}
-button,input{font:inherit}
-button{cursor:pointer;-webkit-tap-highlight-color:transparent}
-button:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-offset:4px}
 
-/* Absolutely black opening screen */
-#opening{position:fixed;inset:0;background:#000;z-index:1000;cursor:pointer}
-#access{position:fixed;inset:0;z-index:999;display:none;background:#000;color:white;align-items:center;justify-content:center;padding:24px}
-.access-box{width:min(100%,340px);text-align:center;animation:fadeIn .65s ease both}
-.access-box h1{font:500 14px Arial,sans-serif;letter-spacing:.28em;margin:0 0 30px}
-.access-box p{color:#777;font:12px Arial,sans-serif}
-.access-box input{width:100%;padding:15px;background:#090909;border:1px solid #343434;color:#fff;text-align:center;border-radius:9px;letter-spacing:.12em}
-.access-box input:focus{border-color:#d78ba7;box-shadow:0 0 18px #ff7da81c}
-.access-box button{width:100%;margin-top:14px;padding:14px;background:#f7dce6;color:#24131d;border:0;border-radius:9px;font:12px Arial,sans-serif;letter-spacing:.12em}
-.access-error{min-height:18px;color:#ff9db9;font:12px Arial,sans-serif;margin-top:15px}
-#experience{display:none;min-height:100vh;position:relative;background:radial-gradient(ellipse at 15% 5%,#ffe2ed,transparent 40%),radial-gradient(ellipse at 95% 60%,#ffe5c9,transparent 35%),linear-gradient(145deg,#fff9f6,#fff0f5 55%,#fff8ed)}
-#petals,#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:10}
-.petal{position:absolute;top:-40px;font-size:17px;opacity:.4;animation:fall linear forwards}
-.screen{display:none;min-height:100vh;width:100%;padding:34px 20px 46px;align-items:center;justify-content:center;position:relative;z-index:2}
-.screen.active{display:flex;animation:screenIn .65s cubic-bezier(.2,.75,.25,1) both}
-.card{width:min(100%,680px);padding:clamp(25px,6vw,52px);border:1px solid #ffffffc9;border-radius:26px;background:#ffffffbd;box-shadow:0 18px 70px #a65b7920;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);text-align:center}
-.eyebrow{color:#b65d80;text-transform:uppercase;letter-spacing:.22em;font:10px/1.8 Arial,sans-serif;margin-bottom:16px}
-h1{font-size:clamp(36px,8vw,66px);line-height:1.06;font-weight:normal;margin:0 0 20px;letter-spacing:-.035em}
-h2{font-size:clamp(28px,6vw,44px);line-height:1.15;font-weight:normal;margin:0 0 20px}
-p{font-size:16px;line-height:1.85;color:#68545f;overflow-wrap:anywhere}
-.small-note{font-size:12px;color:#997f8b;margin-top:25px}
-.heart{display:inline-block;color:#e66d97;animation:heartbeat 2s ease-in-out infinite}
-.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
-.btn{padding:14px 22px;border-radius:100px;border:1px solid #f0b3c9;background:linear-gradient(135deg,#f9c7d9,#f5a9c5);color:#4c2435;font-size:13px;box-shadow:0 5px 18px #d9769a24;transition:transform .2s,box-shadow .2s}
-.btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px #d9769a38}
-.btn:active{transform:scale(.97)}
-.btn.secondary{background:#fffafc;border-color:#ead4dc;box-shadow:none}
-.letter{text-align:left;white-space:pre-line;line-height:2;color:#59404c;font-size:16px}
-.glow-heart{font-size:54px;display:inline-block;color:#e66d97;filter:drop-shadow(0 0 13px #f59ab866);animation:heartbeat 2.2s ease-in-out infinite}
-.divider{width:48px;height:1px;background:#e9a4bc;margin:25px auto}
-.photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:25px}
-.photo{min-height:145px;border-radius:15px;background:linear-gradient(145deg,#ffe5ed,#fff5e8);border:1px solid #f1d3df;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#b47a91;font-size:12px;position:relative}
-.photo img{width:100%;height:100%;min-height:145px;object-fit:cover;position:absolute;inset:0}
-video{width:100%;max-height:65vh;background:#120b10;border-radius:16px;margin-top:12px}
-.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);background:#38212d;color:#fff5fa;padding:12px 18px;border-radius:100px;font:12px/1.5 Arial,sans-serif;box-shadow:0 8px 25px #0002;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:2000;width:max-content;max-width:calc(100% - 30px);text-align:center}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-#musicButton{position:fixed;z-index:20;right:15px;top:15px;border:1px solid #edc4d3;background:#fffaf0e8;color:#75475a;border-radius:50px;padding:10px 14px;font:11px Arial,sans-serif;display:none}
-@keyframes fadeIn{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
-@keyframes screenIn{from{opacity:0;transform:translateY(12px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
-@keyframes heartbeat{0%,100%{transform:scale(1)}12%{transform:scale(1.1)}24%{transform:scale(1)}36%{transform:scale(1.06)}}
-@keyframes fall{to{transform:translate3d(45px,110vh,0) rotate(420deg);opacity:0}}
-@media(max-width:420px){.screen{padding:22px 13px 35px}.card{border-radius:20px;padding:28px 20px}.photo,.photo img{min-height:125px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+<style>
+:root {
+  --pink: #ff75a8;
+  --gold: #ffd98a;
+  --cream: #fff5ed;
+  --dark: #09070c;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--dark);
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  overflow-x: hidden;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.screen {
+  min-height: 100svh;
+  display: none;
+  position: relative;
+  padding: 30px 20px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+}
+
+.screen.active {
+  display: flex;
+  animation: screenIn 0.8s ease both;
+}
+
+@keyframes screenIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1, h2, p {
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 9vw, 4.4rem);
+  line-height: 1.12;
+  margin: 14px 0;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 7vw, 3rem);
+  line-height: 1.2;
+}
+
+p {
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font: 0.72rem Arial, sans-serif;
+  color: var(--gold);
+}
+
+.muted {
+  color: #c5b7c6;
+}
+
+.glow {
+  text-shadow: 0 0 24px #ff75a855;
+}
+
+.btn {
+  position: relative;
+  z-index: 4;
+  border: 1px solid #ffffff35;
+  border-radius: 50px;
+  padding: 14px 25px;
+  background: linear-gradient(135deg, #ff75a8, #f3a8bd);
+  color: #260c19;
+  font-weight: bold;
+  margin: 10px 5px;
+  box-shadow: 0 6px 30px #ff75a822;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.btn:active {
+  transform: scale(.96);
+}
+
+.btn.secondary {
+  color: var(--cream);
+  background: #ffffff0a;
+  border-color: #ffffff30;
+}
+
+.small {
+  font-size: .9rem;
+}
+
+#opening {
+  display: flex;
+  background: #000;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* The opening is deliberately completely black. */
+#opening * {
+  display: none !important;
+}
+
+#access {
+  background:
+    radial-gradient(ellipse at 50% 35%, #57213c50, transparent 65%),
+    #08060a;
+}
+
+.access-box {
+  width: min(100%, 370px);
+}
+
+input {
+  width: 100%;
+  padding: 15px 17px;
+  margin: 12px 0;
+  border: 1px solid #ffffff35;
+  border-radius: 12px;
+  background: #ffffff08;
+  color: white;
+  text-align: center;
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--pink);
+}
+
+#intro {
+  background:
+    radial-gradient(ellipse at 50% 50%, #6c2445aa, transparent 70%),
+    #100912;
+}
+
+.intro-symbol {
+  font-size: 4rem;
+  animation: heartbeat 2s infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+#celebration {
+  background:
+    radial-gradient(ellipse at top, #51213f, transparent 65%),
+    linear-gradient(#100912, #160a16);
+}
+
+#letter {
+  background:
+    radial-gradient(ellipse at 50% 0%, #5b3040, transparent 70%),
+    #100c10;
+}
+
+.letter-card {
+  width: min(100%, 580px);
+  padding: clamp(22px, 6vw, 38px);
+  background: linear-gradient(145deg, #fff7e9, #f7dfdc);
+  color: #422638;
+  border-radius: 6px;
+  box-shadow: 0 20px 80px #0008;
+  text-align: left;
+  position: relative;
+  z-index: 2;
+}
+
+.letter-card h2 {
+  text-align: center;
+  color: #9b416b;
+}
+
+.letter-card p {
+  font-size: 1.04rem;
+  line-height: 1.9;
+}
+
+.signature {
+  text-align: right;
+  font-weight: bold;
+  font-size: 1.15rem !important;
+  color: #9b416b;
+}
+
+#teaser {
+  background:
+    radial-gradient(ellipse at 50% 40%, #423063, transparent 65%),
+    #090812;
+}
+
+#fakeout {
+  background: #050509;
+}
+
+.video-frame {
+  width: min(100%, 760px);
+  border-radius: 16px;
+  border: 1px solid #ffffff20;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 10px 50px #0008;
+  z-index: 2;
+}
+
+video {
+  display: block;
+  width: 100%;
+  max-height: 65svh;
+  background: #000;
+}
+
+#gallery, #galleryMore {
+  background:
+    radial-gradient(ellipse at 50% 0%, #45213d, transparent 65%),
+    #0d0910;
+}
+
+.photo-grid {
+  width: min(100%, 760px);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+  z-index: 2;
+}
+
+.photo-slot {
+  min-height: 150px;
+  aspect-ratio: 4 / 5;
+  border-radius: 12px;
+  border: 1px dashed #ffffff55;
+  background: linear-gradient(145deg, #ffffff12, #ff75a80c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  color: #e9cbdc;
+  padding: 8px;
+  font-family: Arial, sans-serif;
+  font-size: .85rem;
+}
+
+.photo-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-slot .placeholder {
+  line-height: 1.8;
+}
+
+#finale {
+  background:
+    radial-gradient(ellipse at center, #6e254b, transparent 65%),
+    #0b0710;
+}
+
+.heart {
+  color: var(--pink);
+  text-shadow: 0 0 30px #ff75a866;
+}
+
+.petal {
+  position: fixed;
+  top: -30px;
+  z-index: 5;
+  pointer-events: none;
+  animation: fall linear forwards;
+  opacity: .8;
+}
+
+@keyframes fall {
+  to {
+    transform: translate3d(var(--drift), 110vh, 0) rotate(650deg);
+    opacity: 0;
+  }
+}
+
+.confetti {
+  position: fixed;
+  width: 7px;
+  height: 12px;
+  z-index: 6;
+  pointer-events: none;
+  top: -20px;
+  animation: confettiFall 3.5s linear forwards;
+}
+
+@keyframes confettiFall {
+  to {
+    transform: translate(var(--drift), 110vh) rotate(800deg);
+    opacity: 0;
+  }
+}
+
+.fade-line {
+  animation: fadeLine 1.4s ease both;
+}
+
+@keyframes fadeLine {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#error {
+  color: #ff9eae;
+  min-height: 22px;
+}
+
+#musicButton {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 20;
+  display: none;
+  border: 1px solid #ffffff30;
+  background: #120c16e8;
+  color: white;
+  border-radius: 50px;
+  padding: 11px 15px;
+  font: .85rem Arial, sans-serif;
+}
+
+@media (min-width: 700px) {
+  .photo-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .photo-slot {
+    min-height: 200px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
 </style>
 </head>
+
 <body>
 
-<div id="opening" aria-label="Tap to begin"></div>
+<!-- SCREEN 1: Absolutely black. Tap anywhere to begin. -->
+<section id="opening" class="screen active" aria-label="Black opening screen"></section>
 
-<div id="access">
-  <form class="access-box" id="accessForm">
-    <h1>PROVIDE ACCESS</h1>
-    <p>Enter access password</p>
-    <input id="password" type="password" placeholder="••••••••" autocomplete="off" aria-label="Access password" required>
-    <button type="submit">UNLOCK</button>
-    <div class="access-error" id="accessError" aria-live="polite"></div>
-  </form>
-</div>
+<!-- SCREEN 2: Password access. -->
+<section id="access" class="screen">
+  <div class="access-box">
+    <p class="eyebrow">A private little surprise</p>
+    <h1 class="glow">PROVIDE<br>ACCESS</h1>
+    <p class="muted">Some things are meant for one person only.</p>
 
-<div id="experience">
-  <div id="petals"></div>
-  <canvas id="confetti"></canvas>
-  <button id="musicButton" type="button">♫ Music: off</button>
+    <form id="accessForm">
+      <input id="password" type="password" placeholder="Enter the secret password"
+             autocomplete="off" aria-label="Secret password">
+      <button class="btn" type="submit">UNLOCK THE SURPRISE ♥</button>
+    </form>
 
-  <main>
-    <section class="screen active" id="celebration">
-      <div class="card">
-        <div class="eyebrow">A little something for you</div>
-        <div class="glow-heart">♡</div>
-        <h1>Happy Birthday,<br>Mom!</h1>
-        <p>For the person who makes an ordinary day feel like home. Today, this little corner of the world is all yours.</p>
-        <div class="divider"></div>
-        <p>Made with love, just for you. <span class="heart">♥</span></p>
-        <div class="actions"><button class="btn" data-go="letter">A little letter ♡</button></div>
-        <div class="small-note">There is more waiting for you...</div>
-      </div>
-    </section>
+    <p id="error" class="small" aria-live="polite"></p>
+  </div>
+</section>
 
-    <section class="screen" id="letter">
-      <div class="card">
-        <div class="eyebrow">Just between us</div>
-        <h2>A little letter</h2>
-        <div class="letter">Dear Mom,
+<!-- SCREEN 3: Small introduction. -->
+<section id="intro" class="screen">
+  <div class="intro-symbol">♡</div>
+  <p class="eyebrow">Access granted</p>
+  <h1 class="glow">Before we begin…</h1>
+  <p style="max-width:460px">
+    This isn't just another birthday wish.
+    It's a little something made with love, a few surprises,
+    and a very questionable dinosaur theory.
+  </p>
+  <p class="muted small">Take your time. There's more ahead.</p>
+  <button class="btn" onclick="goTo('celebration')">LET'S BEGIN ✨</button>
+</section>
 
-Happy Birthday!
+<!-- SCREEN 4: Birthday celebration. -->
+<section id="celebration" class="screen">
+  <p class="eyebrow">October 19 · A special day</p>
+  <h1 class="glow">Happy Birthday,<br><span style="color:var(--pink)">Mom!</span></h1>
+  <p style="max-width:470px">
+    Today deserves more than a simple message.
+    So I made you a whole little world of surprises. ❤️
+  </p>
+  <div style="font-size:2.4rem;margin:8px">🎂 🌷 💗</div>
+  <button class="btn" onclick="goTo('letter')">THERE'S A LETTER FOR YOU 💌</button>
+</section>
 
-I wanted to make something different for you this year — something you could open and explore, instead of just another ordinary birthday message.
+<!-- SCREEN 5: The dinosaur letter. -->
+<section id="letter" class="screen">
+  <p class="eyebrow">Something from me to you</p>
 
-This little website is my surprise for you. It has a few things to discover, a few memories to revisit, and a few surprises waiting until the end.
+  <article class="letter-card">
+    <h2>Dear Mom, ❤️</h2>
 
-I hope today gives you plenty of reasons to smile.
+    <p>
+      Happy Birthday, Mom! 🎂🥳
+    </p>
 
-You deserve a wonderful birthday, today and every day.
+    <p>
+      Many, many happy returns of the day! I was checking out some
+      historical archives earlier and confirmed it: you were actually
+      born during the dinosaur era. Honestly, dodging asteroids and
+      surviving the Jurassic period just to end up with me as your kid
+      makes you an absolute legend! 🦕☄️
+    </p>
 
-With love,
-Your favourite human (obviously). ❤️</div>
-        <div class="actions">
-          <button class="btn secondary" data-go="celebration">Back</button>
-          <button class="btn" data-go="teaser">Continue ✨</button>
-        </div>
-      </div>
-    </section>
+    <p>
+      Thank you for being the best mom and for always having my back.
+      I hope your day is filled with tons of laughter, love, and plenty
+      of cake. Love you so much! ❤️
+    </p>
 
-    <section class="screen" id="teaser">
-      <div class="card">
-        <div class="eyebrow">Wait... there's more</div>
-        <h2>You didn't think that was it, did you?</h2>
-        <p>Every good surprise deserves a little plot twist.</p>
-        <div class="glow-heart">♡</div>
-        <div class="actions">
-          <button class="btn" data-go="fakeout">Okay, show me</button>
-          <button class="btn secondary" data-go="letter">One more look</button>
-        </div>
-      </div>
-    </section>
+    <p class="signature">
+      By Akshu.
+    </p>
 
-    <section class="screen" id="fakeout">
-      <div class="card">
-        <div class="eyebrow">A very important announcement</div>
-        <h2>Mom, please watch this.</h2>
-        <p>Something has been prepared for you. 👀</p>
-        <video controls playsinline preload="metadata">
-          <source src="./VID-20261014-WA0000.mp4" type="video/mp4">
-          Your browser cannot play this video.
-        </video>
-        <p class="small-note">When you're ready, the real surprise is next.</p>
-        <div class="actions"><button class="btn" data-go="gallery">Next surprise →</button></div>
-      </div>
-    </section>
+    <p style="text-align:right;font-size:.9rem">
+      Also 67 lol .. 💀
+    </p>
+  </article>
 
-    <section class="screen" id="gallery">
-      <div class="card">
-        <div class="eyebrow">Little moments, big memories</div>
-        <h2>A few memories ♡</h2>
-        <p>Some moments deserve to stay close forever.</p>
-        <div class="photo-grid">
-          <div class="photo">Photo 1</div><div class="photo">Photo 2</div>
-          <div class="photo">Photo 3</div><div class="photo">Photo 4</div>
-        </div>
-        <div class="actions">
-          <button class="btn secondary" data-go="fakeout">Back</button>
-          <button class="btn" data-go="galleryMore">More memories →</button>
-        </div>
-      </div>
-    </section>
+  <button class="btn" onclick="goTo('teaser')">OKAY, ONE MORE THING… 👀</button>
+</section>
 
-    <section class="screen" id="galleryMore">
-      <div class="card">
-        <div class="eyebrow">The memory collection continues</div>
-        <h2>And a few more...</h2>
-        <p>For all the little things that make our memories ours.</p>
-        <div class="photo-grid">
-          <div class="photo">Photo 5</div><div class="photo">Photo 6</div>
-          <div class="photo">Photo 7</div><div class="photo">Photo 8</div>
-        </div>
-        <div class="actions">
-          <button class="btn secondary" data-go="gallery">Back</button>
-          <button class="btn" data-go="finale">One last surprise ✨</button>
-        </div>
-      </div>
-    </section>
+<!-- SCREEN 6: Surprise teaser. -->
+<section id="teaser" class="screen">
+  <p class="eyebrow">Wait a second…</p>
+  <h1 class="glow">You thought<br>that was it?</h1>
+  <p style="max-width:440px">
+    Mom, please. Did you really think I'd stop at one letter? 😭
+  </p>
+  <div style="font-size:3rem">👀</div>
+  <button class="btn" onclick="goTo('fakeout')">SHOW ME THE NEXT SURPRISE</button>
+</section>
 
-    <section class="screen" id="finale">
-      <div class="card">
-        <div class="eyebrow">Before you go...</div>
-        <div class="glow-heart">♥</div>
-        <h1>One last<br>surprise.</h1>
-        <p>The best part of this little project isn't the animations, the pages, or the surprises.</p>
-        <p>It's that I got to make something just for you. Happy Birthday, Mom. ❤️</p>
-        <div class="divider"></div>
-        <p>And yes, you're still ancient. Dinosaur-level ancient. 😂</p>
-        <p><strong>Also 67 lol.</strong></p>
-        <div class="actions"><button class="btn" id="replayButton">Experience it again ↻</button></div>
-        <div class="small-note">Made with love. And questionable humour.</div>
-      </div>
-    </section>
-  </main>
-</div>
+<!-- SCREEN 7: Video fakeout. Keep the video in the repository root. -->
+<section id="fakeout" class="screen">
+  <p class="eyebrow">A very important announcement</p>
+  <h2>Mom, please watch this. 🎬</h2>
 
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="video-frame">
+    <video id="fakeoutVideo" controls playsinline preload="metadata">
+      <source src="./VID-20261014-WA0000.mp4" type="video/mp4">
+      Your browser cannot play this video.
+    </video>
+  </div>
+
+  <p class="muted small">
+    Turn up the volume if you want. 😂
+  </p>
+
+  <button class="btn" onclick="goTo('gallery')">OKAY, WHAT'S NEXT? 💗</button>
+</section>
+
+<!-- SCREEN 8: First photo gallery. Replace placeholders with your own photos. -->
+<section id="gallery" class="screen">
+  <p class="eyebrow">Little moments, big memories</p>
+  <h1 class="glow">Our Memories 📸</h1>
+  <p class="muted">A few moments that deserve a place here.</p>
+
+  <div class="photo-grid">
+    <div class="photo-slot">
+      <div class="placeholder">♡<br>Our memory<br><small>Add photo 1</small></div>
+    </div>
+    <div class="photo-slot">
+      <div class="placeholder">♡<br>Our memory<br><small>Add photo 2</small></div>
+    </div>
+    <div class="photo-slot">
+      <div class="placeholder">♡<br>Our memory<br><small>Add photo 3</small></div>
+    </div>
+    <div class="photo-slot">
+      <div class="placeholder">♡<br>Our memory<br><small>Add photo 4</small></div>
+    </div>
+  </div>
+
+  <button class="btn" onclick="goTo('galleryMore')">THERE'S MORE 📷</button>
+</section>
+
+<!-- SCREEN 9: More memories. -->
+<section id="galleryMore" class="screen">
+  <p class="eyebrow">The memories continue</p>
+  <h1 class="glow">Just a little more…</h1>
+
+  <div class="photo-grid">
+    <div class="photo-slot">
+      <div class="placeholder">♡<br>Our memory<br><small>Add photo 5</small></div>
+    </div>
+    <div class="photo-slot">
+      <div class="placeholder">♡<br>Our memory<br><small>Add photo 6</small></div>
+    </div>
+    <div class="photo-slot">
+      <div class="placeholder">♡<br>Our memory<br><small>Add photo 7</small></div>
+    </div>
+    <div class="photo-slot">
+      <div class="placeholder">♡<br>Our memory<br><small>Add photo 8</small></div>
+    </div>
+  </div>
+
+  <button class="btn" onclick="goTo('finale')">ONE LAST SURPRISE ❤️</button>
+</section>
+
+<!-- SCREEN 10: Finale. -->
+<section id="finale" class="screen">
+  <div style="font-size:3.5rem" class="heart">♥</div>
+  <p class="eyebrow">One last thing</p>
+  <h1 class="glow">Love you, Mom.</h1>
+
+  <p style="max-width:480px">
+    Thank you for everything you do, even the little things that
+    sometimes go unnoticed. I hope today makes you smile as much
+    as you make me smile.
+  </p>
+
+  <p style="font-size:1.2rem;color:var(--gold)">
+    Happy Birthday! 🎂✨
+  </p>
+
+  <p class="signature" style="text-align:center">
+    By Akshu.
+  </p>
+
+  <button class="btn" onclick="celebrateAgain()">MORE CONFETTI! 🎉</button>
+  <button class="btn secondary" onclick="replay()">START AGAIN ↺</button>
+</section>
+
+<button id="musicButton" onclick="toggleMusic()" aria-label="Toggle music">
+  ♫ Music
+</button>
 
 <script>
 (() => {
-  "use strict";
-
-  const PASSWORD = "oct 19";
-  const SONG_EMBED_URL = "";
-
-  const opening = document.getElementById("opening");
-  const access = document.getElementById("access");
-  const accessForm = document.getElementById("accessForm");
-  const passwordInput = document.getElementById("password");
-  const accessError = document.getElementById("accessError");
-  const experience = document.getElementById("experience");
-  const musicButton = document.getElementById("musicButton");
-  const toast = document.getElementById("toast");
-  const petals = document.getElementById("petals");
+  const $ = id => document.getElementById(id);
+  const screens = [...document.querySelectorAll(".screen")];
 
   let audioContext = null;
-  let toastTimeout = null;
-  let petalTimer = null;
-  let confettiFrame = null;
-  let confettiPieces = [];
+  let musicOn = false;
+  let musicTimer = null;
+  let musicStep = 0;
+  let currentScreen = "opening";
 
-  function initAudio() {
-    if (audioContext) {
-      if (audioContext.state === "suspended") audioContext.resume().catch(() => {});
-      return;
-    }
-    const AudioCtx = window.AudioContext || window.webkitAudioContext;
-    if (!AudioCtx) return;
+  // All sound effects are synthesized; no extra sound files are needed.
+  function getAudio() {
     try {
-      audioContext = new AudioCtx();
-      if (audioContext.state === "suspended") audioContext.resume().catch(() => {});
-    } catch (_) {}
-  }
+      const AudioContextClass =
+        window.AudioContext || window.webkitAudioContext;
 
-  function tone(freq, start, duration, volume, type = "sine", endFreq = null) {
-    if (!audioContext || audioContext.state !== "running") return;
-    const osc = audioContext.createOscillator();
-    const gain = audioContext.createGain();
-    const now = audioContext.currentTime + start;
-    osc.type = type;
-    osc.frequency.setValueAtTime(freq, now);
-    if (endFreq) osc.frequency.exponentialRampToValueAtTime(endFreq, now + duration);
-    gain.gain.setValueAtTime(0.0001, now);
-    gain.gain.exponentialRampToValueAtTime(Math.max(volume, 0.0002), now + 0.025);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-    osc.connect(gain);
-    gain.connect(audioContext.destination);
-    osc.start(now);
-    osc.stop(now + duration + 0.03);
-  }
+      if (!AudioContextClass) return null;
 
-  function playClick() {
-    initAudio();
-    tone(720, 0, 0.055, 0.045, "sine", 510);
-  }
+      if (!audioContext) audioContext = new AudioContextClass();
+      if (audioContext.state === "suspended") audioContext.resume();
 
-  function playTransition() {
-    initAudio();
-    tone(523.25, 0, 0.14, 0.055);
-    tone(659.25, 0.10, 0.16, 0.045);
-  }
-
-  function playReveal() {
-    initAudio();
-    tone(523.25, 0, 0.24, 0.055);
-    tone(659.25, 0.12, 0.27, 0.055);
-    tone(783.99, 0.24, 0.32, 0.06);
-    tone(1046.5, 0.39, 0.48, 0.045);
-  }
-
-  function showToast(message) {
-    toast.textContent = message;
-    toast.classList.add("show");
-    clearTimeout(toastTimeout);
-    toastTimeout = setTimeout(() => toast.classList.remove("show"), 2600);
-  }
-
-  opening.addEventListener("click", () => {
-    initAudio();
-    playClick();
-    opening.style.display = "none";
-    access.style.display = "flex";
-    setTimeout(() => passwordInput.focus({ preventScroll: true }), 200);
-  }, { once: true });
-
-  accessForm.addEventListener("submit", event => {
-    event.preventDefault();
-    initAudio();
-    playClick();
-
-    if (passwordInput.value.trim().toLowerCase() !== PASSWORD) {
-      accessError.textContent = "Access denied.";
-      passwordInput.value = "";
-      passwordInput.focus();
-      tone(190, 0, 0.12, 0.035, "triangle", 150);
-      return;
+      return audioContext;
+    } catch {
+      return null;
     }
-
-    accessError.textContent = "";
-    access.style.display = "none";
-    experience.style.display = "block";
-    musicButton.style.display = "block";
-    playReveal();
-    startPetals();
-    launchConfetti(115);
-    showToast("Access granted. Happy Birthday! ❤️");
-  });
-
-  function navigate(id) {
-    const next = document.getElementById(id);
-    if (!next || !next.classList.contains("screen")) return;
-    playTransition();
-
-    document.querySelectorAll(".screen").forEach(screen => screen.classList.remove("active"));
-    void next.offsetWidth;
-    next.classList.add("active");
-
-    if (id === "finale") {
-      playReveal();
-      launchConfetti(150);
-    }
-
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  document.addEventListener("click", event => {
-    const button = event.target.closest("[data-go]");
-    if (button) navigate(button.dataset.go);
-  });
+  function tone(frequency, duration = 0.12, volume = 0.045, type = "sine", delay = 0) {
+    const ctx = getAudio();
+    if (!ctx) return;
 
-  function startPetals() {
-    if (petalTimer) return;
-    petalTimer = setInterval(() => {
-      if (experience.style.display === "none") return;
-      const petal = document.createElement("span");
-      petal.className = "petal";
-      petal.textContent = Math.random() > .5 ? "✿" : "♥";
-      petal.style.left = Math.random() * 100 + "vw";
-      petal.style.animationDuration = (7 + Math.random() * 6) + "s";
-      petal.style.fontSize = (10 + Math.random() * 12) + "px";
-      petals.appendChild(petal);
-      setTimeout(() => petal.remove(), 14000);
-    }, 850);
+    const oscillator = ctx.createOscillator();
+    const gain = ctx.createGain();
+    const start = ctx.currentTime + delay;
+
+    oscillator.type = type;
+    oscillator.frequency.setValueAtTime(frequency, start);
+
+    gain.gain.setValueAtTime(0.0001, start);
+    gain.gain.exponentialRampToValueAtTime(volume, start + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+
+    oscillator.connect(gain);
+    gain.connect(ctx.destination);
+
+    oscillator.start(start);
+    oscillator.stop(start + duration + 0.03);
   }
 
-  const canvas = document.getElementById("confetti");
-  const ctx = canvas.getContext("2d");
-
-  function resizeCanvas() {
-    const ratio = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = window.innerWidth * ratio;
-    canvas.height = window.innerHeight * ratio;
-    canvas.style.width = window.innerWidth + "px";
-    canvas.style.height = window.innerHeight + "px";
-    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  function clickSound() {
+    tone(720, 0.07, 0.035, "sine");
+    tone(960, 0.08, 0.022, "sine", 0.045);
   }
 
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
-
-  function launchConfetti(count = 100) {
-    for (let i = 0; i < count; i++) {
-      confettiPieces.push({
-        x: Math.random() * window.innerWidth,
-        y: -20 - Math.random() * window.innerHeight * .35,
-        size: 3 + Math.random() * 5,
-        speed: 1.2 + Math.random() * 3.1,
-        drift: (Math.random() - .5) * 1.8,
-        angle: Math.random() * Math.PI,
-        spin: (Math.random() - .5) * .12,
-        life: 180 + Math.random() * 100,
-        color: ["#ff91b7","#ffd1a8","#d6a7ee","#fff0a8","#f6b8c9"][Math.floor(Math.random() * 5)]
-      });
-    }
-    if (!confettiFrame) animateConfetti();
+  function transitionSound() {
+    tone(440, 0.22, 0.035, "sine");
+    tone(554, 0.24, 0.035, "sine", 0.12);
+    tone(659, 0.32, 0.04, "sine", 0.24);
   }
 
-  function animateConfetti() {
-    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-    confettiPieces = confettiPieces.filter(p => p.life > 0 && p.y < window.innerHeight + 20);
+  function revealSound() {
+    tone(523.25, 0.38, 0.045, "sine");
+    tone(659.25, 0.38, 0.045, "sine", 0.13);
+    tone(783.99, 0.5, 0.05, "sine", 0.26);
+    tone(1046.5, 0.7, 0.035, "sine", 0.42);
+  }
 
-    confettiPieces.forEach(p => {
-      p.x += p.drift;
-      p.y += p.speed;
-      p.angle += p.spin;
-      p.life--;
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.angle);
-      ctx.globalAlpha = Math.min(1, p.life / 45, (window.innerHeight + 20 - p.y) / 30);
-      ctx.fillStyle = p.color;
-      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 1.5);
-      ctx.restore();
+  function errorSound() {
+    tone(220, 0.16, 0.035, "triangle");
+    tone(185, 0.18, 0.025, "triangle", 0.13);
+  }
+
+  function stopVideo() {
+    const video = $("fakeoutVideo");
+    if (video && !video.paused) video.pause();
+  }
+
+  window.goTo = function(id) {
+    const next = $(id);
+    if (!next) return;
+
+    stopVideo();
+
+    screens.forEach(screen => {
+      screen.classList.remove("active");
+      screen.setAttribute("aria-hidden", "true");
     });
 
-    if (confettiPieces.length) {
-      confettiFrame = requestAnimationFrame(animateConfetti);
-    } else {
-      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-      confettiFrame = null;
-    }
-  }
+    next.classList.add("active");
+    next.setAttribute("aria-hidden", "false");
+    currentScreen = id;
 
-  musicButton.addEventListener("click", () => {
-    playClick();
-    if (!SONG_EMBED_URL) {
-      showToast("Your favourite song can be added when its link is ready. ❤️");
+    window.scrollTo({ top: 0, behavior: "instant" });
+
+    if (id === "celebration" || id === "finale") {
+      revealSound();
+      makeConfetti(id === "finale" ? 100 : 55);
+    } else if (id === "letter" || id === "gallery" || id === "galleryMore") {
+      transitionSound();
+      makePetals(18);
     } else {
-      showToast("Add the song player to connect your music.");
+      clickSound();
+    }
+
+    $("musicButton").style.display =
+      id === "opening" || id === "access" ? "none" : "block";
+  };
+
+  // A completely black opening: any tap/click reveals access.
+  $("opening").addEventListener("click", () => {
+    getAudio();
+    goTo("access");
+  });
+
+  $("accessForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const entered = $("password").value.trim().toLowerCase();
+
+    if (entered === "oct 19") {
+      $("error").textContent = "";
+      $("password").value = "";
+      goTo("intro");
+      makePetals(24);
+    } else {
+      $("error").textContent = "Not quite. Try again ❤️";
+      errorSound();
+      $("password").select();
     }
   });
 
-  document.getElementById("replayButton").addEventListener("click", () => {
-    playClick();
-    experience.style.display = "none";
-    musicButton.style.display = "none";
-    access.style.display = "none";
-    opening.style.display = "block";
-    opening.style.background = "#000";
-    passwordInput.value = "";
-    accessError.textContent = "";
+  function makePetals(count) {
+    const symbols = ["🌸", "🌷", "✿", "♥"];
 
-    document.querySelectorAll(".screen").forEach(screen => screen.classList.remove("active"));
-    document.getElementById("celebration").classList.add("active");
-    window.scrollTo({ top: 0, behavior: "auto" });
+    for (let i = 0; i < count; i++) {
+      const petal = document.createElement("span");
+      petal.className = "petal";
+      petal.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.fontSize = (12 + Math.random() * 15) + "px";
+      petal.style.animationDuration = (5 + Math.random() * 6) + "s";
+      petal.style.setProperty("--drift", (Math.random() * 160 - 80) + "px");
+      document.body.appendChild(petal);
+      setTimeout(() => petal.remove(), 12000);
+    }
+  }
+
+  function makeConfetti(count) {
+    const colors = ["#ff75a8", "#ffd98a", "#fff5ed", "#c9a5ff", "#ffb4c8"];
+
+    for (let i = 0; i < count; i++) {
+      const piece = document.createElement("span");
+      piece.className = "confetti";
+      piece.style.left = Math.random() * 100 + "vw";
+      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.animationDuration = (2.5 + Math.random() * 2.5) + "s";
+      piece.style.setProperty("--drift", (Math.random() * 220 - 110) + "px");
+      document.body.appendChild(piece);
+      setTimeout(() => piece.remove(), 6000);
+    }
+  }
+
+  window.celebrateAgain = function() {
+    clickSound();
+    makeConfetti(140);
+    makePetals(24);
+  };
+
+  // Optional gentle synthesized music. No song is embedded by default.
+  // Browsers require a user interaction before audio can start.
+  const melody = [
+    [523.25, 0.25], [659.25, 0.25], [783.99, 0.35],
+    [659.25, 0.25], [587.33, 0.25], [659.25, 0.45],
+    [523.25, 0.25], [587.33, 0.25], [659.25, 0.45],
+    [493.88, 0.25], [587.33, 0.25], [523.25, 0.5]
+  ];
+
+  function musicTick() {
+    if (!musicOn) return;
+    const [frequency, duration] = melody[musicStep % melody.length];
+    tone(frequency, duration * 1.5, 0.012, "sine");
+    musicStep++;
+  }
+
+  window.toggleMusic = function() {
+    getAudio();
+    musicOn = !musicOn;
+
+    if (musicOn) {
+      musicTick();
+      musicTimer = setInterval(musicTick, 420);
+      $("musicButton").textContent = "♫ Music: ON";
+    } else {
+      clearInterval(musicTimer);
+      musicTimer = null;
+      $("musicButton").textContent = "♫ Music: OFF";
+    }
+
+    clickSound();
+  };
+
+  window.replay = function() {
+    stopVideo();
+
+    if (musicTimer) clearInterval(musicTimer);
+    musicTimer = null;
+    musicOn = false;
+    musicStep = 0;
+    $("musicButton").textContent = "♫ Music";
+    $("musicButton").style.display = "none";
+
+    screens.forEach(screen => {
+      screen.classList.remove("active");
+      screen.setAttribute("aria-hidden", "true");
+    });
+
+    $("opening").classList.add("active");
+    $("opening").setAttribute("aria-hidden", "false");
+    $("error").textContent = "";
+    $("password").value = "";
+    currentScreen = "opening";
+    window.scrollTo({ top: 0, behavior: "instant" });
+  };
+
+  // Placeholder slots can be replaced with real photos in the HTML.
+  // Example:
+  // <div class="photo-slot"><img src="./mom-photo-1.jpg" alt="A memory together"></div>
+
+  screens.forEach(screen => {
+    screen.setAttribute("aria-hidden", screen.id === "opening" ? "false" : "true");
   });
 })();
 </script>
+
 </body>
 </html>
