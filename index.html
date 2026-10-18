@@ -1,336 +1,337 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#fff8f4">
 <title>Happy Birthday, Mom! ❤️</title>
-
 <style>
+:root{--pink:#f36f91;--coral:#ff987d;--ink:#382d3c;--muted:#7c6e7b;--line:#f1dce4}
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--pink:#ff6b91;--coral:#ff9278;--ink:#342c3b;--muted:#716875}
-body{
-  min-height:100vh;overflow-x:hidden;
-  background:linear-gradient(145deg,#fff8f4,#fff1f4 52%,#effaff);
-  color:var(--ink);font-family:"Trebuchet MS",Arial,sans-serif;text-align:center
-}
+body{min-height:100svh;overflow-x:hidden;color:var(--ink);font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;text-align:center;background:radial-gradient(ellipse at 8% 8%,#ffcbd866,transparent 38%),radial-gradient(ellipse at 92% 78%,#c3e8f677,transparent 38%),linear-gradient(145deg,#fffaf5,#fff2f5 52%,#f2fbff);-webkit-font-smoothing:antialiased}
 #particles{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
-.petal{position:absolute;top:-40px;animation:fall linear infinite;opacity:.65}
-@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
-main{position:relative;z-index:1;width:min(92%,720px);margin:auto;padding:28px 0 42px}
-.screen{
-  display:none;min-height:76vh;flex-direction:column;
-  align-items:center;justify-content:center;gap:22px;animation:appear .65s ease
-}
+.petal{position:absolute;top:-45px;opacity:.48;animation:fall linear infinite}
+@keyframes fall{to{transform:translate3d(20px,112svh,0) rotate(540deg)}}
+main{position:relative;z-index:1;width:min(92%,720px);margin:auto;padding:clamp(22px,5vh,48px) 0 28px}
+.screen{display:none;min-height:76svh;flex-direction:column;align-items:center;justify-content:center;gap:clamp(16px,3vh,24px);animation:in .65s cubic-bezier(.2,.75,.25,1) both}
 .screen.active{display:flex}
-@keyframes appear{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
-h1{font-size:clamp(2.15rem,8vw,3.8rem);line-height:1.12;color:#ef5d86;letter-spacing:-.04em}
-h2{font-size:clamp(1.35rem,5vw,2rem);color:#de6382}
-p{font-size:1.05rem;line-height:1.75}
-.heart{display:inline-block;font-size:3.8rem;animation:heartbeat 1.4s infinite}
-@keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
-.card{
-  width:100%;padding:clamp(22px,5vw,32px);
-  border:1px solid #f3dce3;border-radius:26px;
-  background:rgba(255,255,255,.88);box-shadow:0 14px 42px #a94d6c12
-}
-input{
-  width:100%;max-width:360px;padding:15px;border:1px solid #e8cbd5;
-  border-radius:14px;outline:none;background:#fff;color:var(--ink);
-  text-align:center;font-size:1rem
-}
-input:focus{border-color:var(--pink);box-shadow:0 0 0 4px #ff6b911c}
-button,.button-link{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:14px 22px;border:0;border-radius:30px;
-  background:linear-gradient(135deg,var(--pink),var(--coral));
-  color:white;font-weight:800;font-size:1rem;text-decoration:none;
-  cursor:pointer;transition:transform .2s;box-shadow:0 8px 20px #ff6b9126
-}
-button:hover,.button-link:hover{transform:translateY(-2px)}
-button.secondary,.button-link.secondary{background:#fff;color:#725565;border:1px solid #edd3dc;box-shadow:none}
+@keyframes in{from{opacity:0;transform:translateY(16px) scale(.99);filter:blur(2px)}to{opacity:1;transform:none;filter:blur(0)}}
+h1{font-size:clamp(2.15rem,8vw,3.8rem);line-height:1.08;color:#e85f86;letter-spacing:-.05em}
+h2{font-size:clamp(1.3rem,5vw,1.95rem);color:#d85f80}
+p{font-size:clamp(1rem,3.6vw,1.08rem);line-height:1.75}
+.eyebrow{font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:#a16b83}
+.heart{display:grid;place-items:center;width:82px;height:82px;border-radius:28px;background:#ffffffb3;border:1px solid white;box-shadow:0 12px 32px #bb66831c;font-size:2.8rem;animation:float 3.8s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6px) rotate(2deg)}}
+.card{width:100%;padding:clamp(22px,5vw,34px);border:1px solid #f1dce4e6;border-radius:28px;background:#ffffffc7;box-shadow:0 22px 65px #81415b1f;backdrop-filter:blur(12px)}
+.card p+p{margin-top:10px}
+input{width:100%;max-width:360px;padding:15px;border:1px solid #e9ced8;border-radius:15px;background:white;color:var(--ink);text-align:center;font-size:1rem;transition:.22s}
+input:focus{outline:none;border-color:var(--pink);box-shadow:0 0 0 4px #ff6b911c}
+button,.button-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:13px 21px;border:1px solid transparent;border-radius:999px;background:linear-gradient(120deg,var(--pink),var(--coral));color:white;font-weight:800;font-size:.98rem;text-decoration:none;cursor:pointer;box-shadow:0 9px 23px #ff6b9129;transition:transform .22s,box-shadow .22s}
+.secondary{background:#ffffffc7!important;color:#725565!important;border:1px solid #edd3dc!important;box-shadow:none!important}
+button:active{transform:scale(.975)}
+@media(hover:hover){button:hover,.button-link:hover{transform:translateY(-2px);box-shadow:0 13px 28px #ff6b9135}}
 .message{min-height:25px;color:#d64e79;margin-top:10px}
-.loader{width:62px;height:62px;border:5px solid #f5dce4;border-top-color:var(--pink);border-radius:50%;animation:spin 1s linear infinite}
+.small{font-size:.88rem;color:var(--muted)}
+.loader{width:58px;height:58px;border:4px solid #f5dce4;border-top-color:var(--pink);border-right-color:var(--coral);border-radius:50%;animation:spin .9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.letter{text-align:left;white-space:pre-line;line-height:1.9;font-size:1.06rem}
-.small{font-size:.9rem;color:var(--muted)}
-#songPlayer{display:none;width:100%;margin-top:8px}
-#songPlayer.visible{display:block;animation:appear .5s ease}
-.video-frame{position:relative;width:100%;padding-bottom:56.25%;overflow:hidden;border-radius:16px;background:#f5e8ec}
+.letter{text-align:left;white-space:pre-line;line-height:1.95;font-size:1.04rem}
+#songPlayer{display:none;width:100%}
+#songPlayer.visible{display:block;animation:in .45s ease}
+.video-frame{position:relative;width:100%;padding-bottom:56.25%;overflow:hidden;border-radius:18px;background:#f5e8ec}
 .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
 .music-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:16px}
-.gallery{width:100%;display:flex;flex-direction:column;gap:20px}
-.gallery-item{width:100%;padding:12px;background:#fff;border:1px solid #f0dce3;border-radius:22px;box-shadow:0 12px 32px #a94d6c12}
-.gallery-caption{padding:12px 6px 3px;color:#725565;font-size:.98rem}
-.photo-placeholder{padding:28px 18px;border:2px dashed #efc4d2;border-radius:16px;background:#fff8fb;color:#8e6878}
-.cat-art{
-  width:min(100%,340px);padding:18px 16px 22px;border-radius:24px;
-  background:#fff;box-shadow:0 12px 32px #a94d6c18
-}
-.sixtyseven{font-size:clamp(64px,18vw,100px);font-weight:1000;color:#000;line-height:1.1;letter-spacing:-.05em}
-.cat-video{display:block;width:100%;height:auto;object-fit:contain;margin:12px auto 0;border-radius:12px}
+.gallery{width:100%;display:grid;grid-template-columns:1fr;gap:16px}
+.gallery-item{overflow:hidden;padding:10px;background:#ffffffdd;border:1px solid #f0dce3;border-radius:23px;box-shadow:0 12px 32px #a94d6c10;transition:transform .3s,box-shadow .3s}
+.gallery-item img{display:block;width:100%;max-height:500px;object-fit:cover;border-radius:15px}
+.gallery-caption{padding:13px 8px 5px;color:#725565;font-size:.98rem}
+.photo-placeholder{padding:30px 18px;border:2px dashed #efc4d2;border-radius:16px;background:#fff8fb;color:#8e6878}
+.cat-art{width:min(100%,340px);padding:18px;border-radius:26px;background:#ffffffdf;box-shadow:0 22px 65px #81415b1f}
+.sixtyseven{font-size:clamp(64px,18vw,100px);font-weight:1000;line-height:1.1;letter-spacing:-.07em}
+.cat-video{display:block;width:100%;height:auto;margin:12px auto 0;border-radius:14px}
 .gallery-note{max-width:520px;color:var(--muted);font-size:.95rem}
-footer{padding:24px 0 8px;font-size:.85rem;color:#8b7d87}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}
-}
+.divider{width:70px;height:4px;border-radius:4px;background:linear-gradient(90deg,#ffc1d0,#ff987d)}
+footer{padding:22px 0 8px;font-size:.84rem;color:#94838e}
+#toast{position:fixed;left:50%;bottom:20px;z-index:1000;transform:translate(-50%,15px);opacity:0;pointer-events:none;max-width:90%;padding:12px 17px;border-radius:16px;background:#382d3c;color:white;transition:.25s}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+.confetti{position:fixed;top:-35px;z-index:999;pointer-events:none;animation:confettiFall var(--duration) ease-in forwards}
+@keyframes confettiFall{to{transform:translate(var(--drift),110svh) rotate(var(--spin));opacity:0}}
+@media(min-width:560px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery-item img{height:270px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
-
 <body>
 <div id="particles" aria-hidden="true"></div>
+<div id="toast" role="status"></div>
 <main>
 
 <section class="screen active" id="login">
-  <div class="heart">💌</div>
-  <h1>A Special Surprise</h1>
-  <p>A little something made with love...</p>
-  <div class="card">
-    <h2>Restricted Access</h2>
-    <p style="margin:12px 0 20px">Only one legendary mom can enter.</p>
-    <input id="password" type="password" placeholder="Enter the secret code" autocomplete="off" aria-label="Secret code">
-    <button onclick="checkPassword()" style="margin-top:16px">Unlock Surprise 🔐</button>
-    <p class="message" id="loginMessage" aria-live="polite"></p>
-  </div>
+<div class="heart">💌</div>
+<p class="eyebrow">A little secret, just for you</p>
+<h1>A Special Surprise</h1>
+<p>A little something made with love...</p>
+<div class="card">
+<p class="eyebrow">Private access</p>
+<h2 style="margin-top:8px">Restricted Access</h2>
+<p style="margin:12px 0 20px">Only one legendary mom can enter.</p>
+<form id="passwordForm">
+<input id="password" type="password" placeholder="Enter the secret code" autocomplete="off" aria-label="Secret code">
+<button style="margin-top:16px">Unlock Surprise 🔐</button>
+</form>
+<p class="message" id="loginMessage" aria-live="polite"></p>
+</div>
 </section>
 
 <section class="screen" id="verify">
-  <div class="heart">🎂</div>
-  <h1>Identity Confirmed?</h1>
-  <p>One last question before the surprise...</p>
-  <div class="card">
-    <h2>When is your birthday?</h2>
-    <p style="margin:12px 0 20px">Enter the day and month.</p>
-    <input id="birthday" type="text" placeholder="1910 or 19/10" inputmode="numeric" autocomplete="off" aria-label="Birthday day and month">
-    <button onclick="checkBirthday()" style="margin-top:16px">Confirm Birthday 🎁</button>
-    <p class="message" id="birthdayMessage" aria-live="polite"></p>
-  </div>
+<div class="heart">🎂</div>
+<p class="eyebrow">One tiny final check</p>
+<h1>Identity Confirmed?</h1>
+<p>One last question before the surprise...</p>
+<div class="card">
+<h2>When is your birthday?</h2>
+<p style="margin:12px 0 20px">Enter the day and month.</p>
+<form id="birthdayForm">
+<input id="birthday" placeholder="1910 or 19/10" inputmode="numeric" autocomplete="off" aria-label="Birthday day and month">
+<button style="margin-top:16px">Confirm Birthday 🎁</button>
+</form>
+<p class="message" id="birthdayMessage" aria-live="polite"></p>
+</div>
 </section>
 
 <section class="screen" id="loading">
-  <div class="loader"></div>
-  <h1>Preparing Something Special...</h1>
-  <p>Collecting love, memories, and birthday magic. ✨</p>
+<div class="loader"></div>
+<p class="eyebrow">Just a moment</p>
+<h1>Preparing Something Special...</h1>
+<p>Collecting love, memories, and birthday magic. ✨</p>
 </section>
 
 <section class="screen" id="celebration">
-  <div class="heart">🎉</div>
-  <h1>Happy Birthday!</h1>
-  <h2>Mom ❤️</h2>
-  <p>Today is all about celebrating you!</p>
-  <div class="card">
-    <p>🌸 A wonderful day for a wonderful mom. 🌸</p>
-    <p style="margin-top:12px">Ready for your birthday surprise?</p>
-  </div>
-  <button onclick="showScreen('letter')">Open Your Letter 💌</button>
-  <button class="secondary" id="musicButton" onclick="toggleMusic()">🎵 Play Birthday Song</button>
-
-  <div class="card" id="songPlayer">
-    <h2 style="margin-bottom:12px">🎶 Birthday Song</h2>
-    <p class="small" style="margin-bottom:15px">Music for Mom ❤️</p>
-    <div class="video-frame">
-      <iframe id="youtubePlayer" src="about:blank" title="Birthday song" allow="autoplay; encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-    <p class="small" style="margin-top:12px">The song can be changed to Mom's favourite once you know its name.</p>
-    <div class="music-actions">
-      <a class="button-link" id="openSongLink" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">Open Song on YouTube ↗</a>
-      <button class="secondary" onclick="toggleMusic()">Hide Player</button>
-    </div>
-  </div>
+<div class="heart">🎉</div>
+<p class="eyebrow">Today is all yours</p>
+<h1>Happy Birthday!</h1>
+<h2>Mom ❤️</h2>
+<div class="divider"></div>
+<p>Today is all about celebrating you!</p>
+<div class="card">
+<p>🌸 A wonderful day for a wonderful mom. 🌸</p>
+<p>Ready for your birthday surprise?</p>
+</div>
+<div class="actions">
+<button onclick="showScreen('letter')">Open Your Letter 💌</button>
+<button class="secondary" id="musicButton" onclick="toggleMusic()">🎵 Play Birthday Song</button>
+</div>
+<div class="card" id="songPlayer">
+<h2>🎶 Birthday Song</h2>
+<p class="small" style="margin:12px">Music for Mom ❤️</p>
+<div class="video-frame">
+<iframe id="youtubePlayer" src="about:blank" title="Birthday song" allow="autoplay; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+<div class="music-actions">
+<a class="button-link" id="openSongLink" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">Open Song on YouTube ↗</a>
+<button class="secondary" onclick="toggleMusic()">Hide Player</button>
+</div>
+</div>
 </section>
 
 <section class="screen" id="letter">
-  <div class="heart">❤️</div>
-  <h1>Dear Mom...</h1>
-  <div class="card letter">Happy Birthday, Mom! 🎂🥳
+<div class="heart">❤️</div>
+<p class="eyebrow">From me to you</p>
+<h1>Dear Mom...</h1>
+<div class="card letter">Happy Birthday, Mom! 🎂🥳
 
 Many, many happy returns of the day! I was checking out some historical archives earlier and confirmed it: you were actually born during the dinosaur era. Honestly, dodging asteroids and surviving the Jurassic period just to end up with me as your kid makes you an absolute legend! 🦕☄️
 
 Thank you for being the best mom and for always having my back. I hope your day is filled with tons of laughter, love, and plenty of cake.
 
 Love you so much! ❤️ Also 67 lol ..</div>
-  <button onclick="showScreen('teaser')">The Last Surprise 🎁</button>
+<button onclick="showScreen('teaser')">The Last Surprise 🎁</button>
 </section>
 
 <section class="screen" id="teaser">
-  <div class="heart">👀</div>
-  <h1>Wait... Before You Go</h1>
-  <div class="card">
-    <h2>Did you think that was everything?</h2>
-    <p style="margin-top:14px">I might have one tiny little thing left... 🤭</p>
-  </div>
-  <button onclick="showScreen('fakeout')">Wait, what? 🤨</button>
+<div class="heart">👀</div>
+<p class="eyebrow">Wait a second</p>
+<h1>Wait... Before You Go</h1>
+<div class="card">
+<h2>Did you think that was everything?</h2>
+<p style="margin-top:14px">I might have one tiny little thing left... 🤭</p>
+</div>
+<button onclick="showScreen('fakeout')">Wait, what? 🤨</button>
 </section>
 
 <section class="screen" id="fakeout">
-  <div class="cat-art" role="img" aria-label="67 with the cat animation">
-    <div class="sixtyseven">67</div>
-    <video class="cat-video" autoplay loop muted playsinline preload="auto">
-      <source src="./VID-20261014-WA0000.mp4" type="video/mp4">
-      Your browser does not support this video.
-    </video>
-  </div>
-  <div class="heart">😂</div>
-  <h1>Okay, I Was Lying.</h1>
-  <div class="card">
-    <h2>There's actually one more thing!</h2>
-    <p style="margin-top:14px">A few memories with my favourite person. ❤️</p>
-  </div>
-  <button onclick="showScreen('gallery')">Show Me! 📸</button>
+<div class="cat-art" role="img" aria-label="67 with the cat animation">
+<div class="sixtyseven">67</div>
+<video class="cat-video" autoplay loop muted playsinline preload="auto">
+<source src="./VID-20261014-WA0000.mp4" type="video/mp4">
+Your browser does not support this video.
+</video>
+</div>
+<div class="heart">😂</div>
+<h1>Okay, I Was Lying.</h1>
+<div class="card">
+<h2>There's actually one more thing!</h2>
+<p style="margin-top:14px">A few memories with my favourite person. ❤️</p>
+</div>
+<button onclick="showScreen('gallery')">Show Me! 📸</button>
 </section>
 
 <section class="screen" id="gallery">
-  <div class="heart">📸</div>
-  <h1>Our Little Memories</h1>
-  <p>A few moments with the best mom ever. ❤️</p>
-  <div class="gallery">
-    <div class="gallery-item"><div class="photo-placeholder">📷<br><strong>Photo 1 goes here</strong><br><span class="small">Add a favourite picture with Mom</span></div><div class="gallery-caption">One of my favourite memories ❤️</div></div>
-    <div class="gallery-item"><div class="photo-placeholder">🌷<br><strong>Photo 2 goes here</strong><br><span class="small">Add another special moment</span></div><div class="gallery-caption">A moment worth keeping forever ✨</div></div>
-    <div class="gallery-item"><div class="photo-placeholder">💗<br><strong>Photo 3 goes here</strong><br><span class="small">Add one more lovely picture</span></div><div class="gallery-caption">Love you, Mom! 💖</div></div>
-    <div class="gallery-item"><div class="photo-placeholder">🥰<br><strong>Photo 4 goes here</strong><br><span class="small">One more special memory</span></div><div class="gallery-caption">My favourite person, always 💕</div></div>
-  </div>
-  <p class="gallery-note">There are even more memories waiting on the next page. 👀</p>
-  <button onclick="showScreen('galleryMore')">There were too many photos to show on this one page, lol.</button>
-  <button onclick="showScreen('finale')">One Last Message 💖</button>
+<div class="heart">📸</div>
+<p class="eyebrow">The good stuff</p>
+<h1>Our Little Memories</h1>
+<p>A few moments with the best mom ever. ❤️</p>
+<div class="gallery">
+<div class="gallery-item"><div class="photo-placeholder">📷<br><strong>Photo 1 goes here</strong><br><span class="small">Add a favourite picture with Mom</span></div><div class="gallery-caption">One of my favourite memories ❤️</div></div>
+<div class="gallery-item"><div class="photo-placeholder">🌷<br><strong>Photo 2 goes here</strong><br><span class="small">Add another special moment</span></div><div class="gallery-caption">A moment worth keeping forever ✨</div></div>
+<div class="gallery-item"><div class="photo-placeholder">💗<br><strong>Photo 3 goes here</strong><br><span class="small">Add one more lovely picture</span></div><div class="gallery-caption">Love you, Mom! 💖</div></div>
+<div class="gallery-item"><div class="photo-placeholder">🥰<br><strong>Photo 4 goes here</strong><br><span class="small">One more special memory</span></div><div class="gallery-caption">My favourite person, always 💕</div></div>
+</div>
+<p class="gallery-note">There are even more memories waiting on the next page. 👀</p>
+<button onclick="showScreen('galleryMore')">There were too many photos to show on this one page, lol.</button>
+<button class="secondary" onclick="showScreen('finale')">One Last Message 💖</button>
 </section>
 
 <section class="screen" id="galleryMore">
-  <div class="heart">🖼️</div>
-  <h1>And There's More!</h1>
-  <p>Okay, maybe I had a few too many photos. 😂❤️</p>
-  <div class="gallery">
-    <div class="gallery-item"><div class="photo-placeholder">📷<br><strong>Photo 5 goes here</strong><br><span class="small">Add another favourite photo</span></div><div class="gallery-caption">Another memory to keep ✨</div></div>
-    <div class="gallery-item"><div class="photo-placeholder">🌸<br><strong>Photo 6 goes here</strong><br><span class="small">Add another special moment</span></div><div class="gallery-caption">A little moment, a lot of love 💗</div></div>
-    <div class="gallery-item"><div class="photo-placeholder">💞<br><strong>Photo 7 goes here</strong><br><span class="small">Add one more photo</span></div><div class="gallery-caption">More memories with you ❤️</div></div>
-    <div class="gallery-item"><div class="photo-placeholder">🎂<br><strong>Photo 8 goes here</strong><br><span class="small">Add a birthday memory</span></div><div class="gallery-caption">The best is having you as my mom 🥹</div></div>
-  </div>
-  <button onclick="showScreen('gallery')">← Back to the First Gallery</button>
-  <button onclick="showScreen('finale')">One Last Message 💖</button>
+<div class="heart">🖼️</div>
+<p class="eyebrow">Bonus memories</p>
+<h1>And There's More!</h1>
+<p>Okay, maybe I had a few too many photos. 😂❤️</p>
+<div class="gallery">
+<div class="gallery-item"><div class="photo-placeholder">📷<br><strong>Photo 5 goes here</strong><br><span class="small">Add another favourite photo</span></div><div class="gallery-caption">Another memory to keep ✨</div></div>
+<div class="gallery-item"><div class="photo-placeholder">🌸<br><strong>Photo 6 goes here</strong><br><span class="small">Add another special moment</span></div><div class="gallery-caption">A little moment, a lot of love 💗</div></div>
+<div class="gallery-item"><div class="photo-placeholder">💞<br><strong>Photo 7 goes here</strong><br><span class="small">Add one more photo</span></div><div class="gallery-caption">More memories with you ❤️</div></div>
+<div class="gallery-item"><div class="photo-placeholder">🎂<br><strong>Photo 8 goes here</strong><br><span class="small">Add a birthday memory</span></div><div class="gallery-caption">The best is having you as my mom 🥹</div></div>
+</div>
+<div class="actions">
+<button class="secondary" onclick="showScreen('gallery')">← Back to the First Gallery</button>
+<button onclick="showScreen('finale')">One Last Message 💖</button>
+</div>
 </section>
 
 <section class="screen" id="finale">
-  <div class="heart">💖</div>
-  <h1>You're Legendary!</h1>
-  <div class="card">
-    <h2>Happy Birthday, Mom! 🎂</h2>
-    <p style="margin-top:15px">One birthday. Countless memories. A lifetime of love.</p>
-    <p style="margin-top:15px">Thank you for being you. ❤️</p>
-  </div>
-  <button onclick="showScreen('celebration')">Back to the Celebration 🎉</button>
-  <button class="secondary" onclick="showScreen('celebration');toggleMusic()">🎵 Play / Hide Song</button>
+<div class="heart">💖</div>
+<p class="eyebrow">One last thing</p>
+<h1>You're Legendary!</h1>
+<div class="card">
+<h2>Happy Birthday, Mom! 🎂</h2>
+<p style="margin-top:15px">One birthday. Countless memories. A lifetime of love.</p>
+<p style="margin-top:15px">Thank you for being you. ❤️</p>
+</div>
+<div class="actions">
+<button onclick="showScreen('celebration')">Back to the Celebration 🎉</button>
+<button class="secondary" onclick="showScreen('celebration');toggleMusic()">🎵 Play / Hide Song</button>
+</div>
 </section>
 
 <footer>Made with ❤️ for Mom · Birthday Edition</footer>
 </main>
 
 <script>
-const SECRET_PASSWORD = "oct 19";
-const ACCEPTED_BIRTHDAYS = ["1910", "19/10", "19-10", "19.10"];
+const SECRET_PASSWORD="oct 19";
+const ACCEPTED_BIRTHDAYS=["1910","19/10","19-10","19.10"];
 
-/* Replace these two values when Dad confirms Mom's favourite song. */
-const SONG_EMBED_URL = "";
-const SONG_PAGE_URL = "https://www.youtube.com/";
+// Add the confirmed song's YouTube embed URL and watch-page URL here later.
+const SONG_EMBED_URL="";
+const SONG_PAGE_URL="https://www.youtube.com/";
 
-function showScreen(id) {
-  document.querySelectorAll(".screen").forEach(screen => screen.classList.remove("active"));
-  const target = document.getElementById(id);
-  if (target) target.classList.add("active");
-  window.scrollTo({top:0,behavior:"smooth"});
+function showScreen(id){
+  const target=document.getElementById(id);
+  if(!target)return;
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+  target.classList.add("active");
+  window.scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
 }
 
-function checkPassword() {
-  const entered = document.getElementById("password").value;
-  const message = document.getElementById("loginMessage");
-  if (entered === SECRET_PASSWORD) {
-    message.textContent = "Access granted. Welcome, Mom! 💖";
-    setTimeout(() => showScreen("verify"), 500);
-  } else {
-    message.textContent = "Incorrect code. Try again! 🔎";
+function checkPassword(){
+  const msg=document.getElementById("loginMessage");
+  if(document.getElementById("password").value.trim().toLowerCase()===SECRET_PASSWORD){
+    msg.textContent="Access granted. Welcome, Mom! 💖";
+    setTimeout(()=>showScreen("verify"),450);
+  }else{
+    msg.textContent="Not quite! Try the secret code again. 🔎";
   }
 }
 
-function checkBirthday() {
-  const entered = document.getElementById("birthday").value.trim().replace(/\s/g, "");
-  const message = document.getElementById("birthdayMessage");
-  if (ACCEPTED_BIRTHDAYS.includes(entered)) {
-    message.textContent = "Birthday verified! Let the magic begin! 🎉";
+function checkBirthday(){
+  const val=document.getElementById("birthday").value.trim().replace(/\s/g,"");
+  const msg=document.getElementById("birthdayMessage");
+  if(ACCEPTED_BIRTHDAYS.includes(val)){
+    msg.textContent="Birthday verified! Let the magic begin! 🎉";
     showScreen("loading");
-    setTimeout(() => {
-      showScreen("celebration");
-      launchConfetti();
-    }, 2000);
-  } else {
-    message.textContent = "Try 1910, 19/10, 19-10, or 19.10! 🎂";
+    setTimeout(()=>{showScreen("celebration");launchConfetti()},1750);
+  }else{
+    msg.textContent="Try 1910, 19/10, 19-10, or 19.10! 🎂";
   }
 }
 
-let musicIsOpen = false;
+document.getElementById("passwordForm").addEventListener("submit",e=>{e.preventDefault();checkPassword()});
+document.getElementById("birthdayForm").addEventListener("submit",e=>{e.preventDefault();checkBirthday()});
 
-function toggleMusic() {
-  const player = document.getElementById("songPlayer");
-  const iframe = document.getElementById("youtubePlayer");
-  const button = document.getElementById("musicButton");
-  const openLink = document.getElementById("openSongLink");
-
-  if (!musicIsOpen) {
-    if (!SONG_EMBED_URL) {
-      alert("Mom's favourite song will be added here once you know which song it is! ❤️");
-      return;
-    }
-    musicIsOpen = true;
+let musicIsOpen=false;
+function toggleMusic(){
+  const player=document.getElementById("songPlayer");
+  const iframe=document.getElementById("youtubePlayer");
+  const btn=document.getElementById("musicButton");
+  if(!musicIsOpen){
+    if(!SONG_EMBED_URL){toast("Mom's favourite song will be added here soon! ❤️");return}
+    musicIsOpen=true;
     player.classList.add("visible");
-    iframe.src = SONG_EMBED_URL + (SONG_EMBED_URL.includes("?") ? "&" : "?") + "autoplay=1";
-    openLink.href = SONG_PAGE_URL;
-    if (button) button.textContent = "✖ Hide Music Player";
-  } else {
-    musicIsOpen = false;
+    iframe.src=SONG_EMBED_URL+(SONG_EMBED_URL.includes("?")?"&":"?")+"autoplay=1";
+    document.getElementById("openSongLink").href=SONG_PAGE_URL;
+    if(btn)btn.textContent="✖ Hide Music Player";
+  }else{
+    musicIsOpen=false;
     player.classList.remove("visible");
-    iframe.src = "about:blank";
-    if (button) button.textContent = "🎵 Play Birthday Song";
+    iframe.src="about:blank";
+    if(btn)btn.textContent="🎵 Play Birthday Song";
   }
 }
 
-document.getElementById("password").addEventListener("keydown", event => {
-  if (event.key === "Enter") checkPassword();
-});
-document.getElementById("birthday").addEventListener("keydown", event => {
-  if (event.key === "Enter") checkBirthday();
-});
-
-const particleContainer = document.getElementById("particles");
-const particleSymbols = ["🌸","💗","✨","🌷","💕"];
-
-for (let i = 0; i < 20; i++) {
-  const p = document.createElement("span");
-  p.className = "petal";
-  p.textContent = particleSymbols[Math.floor(Math.random()*particleSymbols.length)];
-  p.style.left = Math.random()*100 + "%";
-  p.style.animationDuration = (7+Math.random()*12) + "s";
-  p.style.animationDelay = (-Math.random()*18) + "s";
-  p.style.fontSize = (12+Math.random()*18) + "px";
-  particleContainer.appendChild(p);
+let toastTimer;
+function toast(text){
+  const el=document.getElementById("toast");
+  el.textContent=text;
+  el.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>el.classList.remove("show"),2800);
 }
 
-function launchConfetti() {
-  const symbols = ["🎉","🎊","✨","💖","🌸"];
-  for (let i = 0; i < 65; i++) {
-    const piece = document.createElement("span");
-    piece.textContent = symbols[Math.floor(Math.random()*symbols.length)];
-    piece.style.position = "fixed";
-    piece.style.left = Math.random()*100 + "vw";
-    piece.style.top = "-35px";
-    piece.style.zIndex = "999";
-    piece.style.pointerEvents = "none";
-    piece.style.fontSize = (16+Math.random()*18) + "px";
-    piece.style.transition = "transform " + (2+Math.random()*2) + "s linear, opacity 3s";
-    document.body.appendChild(piece);
-    requestAnimationFrame(() => {
-      piece.style.transform = "translateY(" + (window.innerHeight+100) + "px) rotate(" + (Math.random()*1000) + "deg)";
-      piece.style.opacity = "0";
-    });
-    setTimeout(() => piece.remove(),4500);
+const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const container=document.getElementById("particles");
+const symbols=["🌸","💗","✨","🌷","💕"];
+if(!reduced){
+  for(let i=0;i<13;i++){
+    const p=document.createElement("span");
+    p.className="petal";
+    p.textContent=symbols[Math.random()*symbols.length|0];
+    p.style.left=Math.random()*100+"%";
+    p.style.animationDuration=10+Math.random()*13+"s";
+    p.style.animationDelay=-Math.random()*20+"s";
+    p.style.fontSize=12+Math.random()*15+"px";
+    container.appendChild(p);
   }
+}
+
+let confettiBusy=false;
+function launchConfetti(){
+  if(reduced||confettiBusy)return;
+  confettiBusy=true;
+  const icons=["🎉","🎊","✨","💖","🌸"];
+  for(let i=0;i<42;i++){
+    const p=document.createElement("span");
+    p.className="confetti";
+    p.textContent=icons[Math.random()*icons.length|0];
+    p.style.left=Math.random()*100+"vw";
+    p.style.setProperty("--duration",2.4+Math.random()*1.7+"s");
+    p.style.setProperty("--drift",(Math.random()-.5)*180+"px");
+    p.style.setProperty("--spin",(Math.random()*800-400)+"deg");
+    p.style.fontSize=15+Math.random()*16+"px";
+    p.style.animationDelay=Math.random()*.55+"s";
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),5000);
+  }
+  setTimeout(()=>confettiBusy=false,5000);
 }
 </script>
 </body>
